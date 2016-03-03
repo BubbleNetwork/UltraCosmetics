@@ -8,6 +8,7 @@ import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.pets.PetType;
 import be.isach.ultracosmetics.util.AnvilGUI;
 import be.isach.ultracosmetics.util.ItemFactory;
+import com.thebubblenetwork.api.framework.BukkitBubblePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -369,7 +370,13 @@ public class PetManager implements Listener {
                 event.setCancelled(true);
                 if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(MessageManager.getMessage("Purchase"))) {
                     if (Core.getCustomPlayer(p).getBalance() >= (int) SettingsManager.getConfig().get("Pets-Rename.Requires-Money.Price")) {
+                        //BubbleNetwork start
+                        BukkitBubblePlayer player = Core.getCustomPlayer(p).getBukkitBubblePlayer();
+                        player.setTokens(player.getTokens() - (int) SettingsManager.getConfig().get("Pets-Rename.Requires-Money.Price"));
+                        /*
                         Core.economy.withdrawPlayer(p, (int) SettingsManager.getConfig().get("Pets-Rename.Requires-Money.Price"));
+                        */
+                        //BubbleNetwork end
                         p.sendMessage(MessageManager.getMessage("Successful-Purchase"));
                         if (Core.getCustomPlayer(p).currentPet.getType() == PetType.WITHER)
                             Core.getCustomPlayer(p).currentPet.entity.setCustomName(name);

@@ -26,30 +26,34 @@ import be.isach.ultracosmetics.util.*;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 /**
  * Created by sacha on 03/08/15.
  */
-public class UltraCosmetics extends JavaPlugin {
+//BubbleNetwork start
+public class UltraCosmetics extends JavaPlugin{
 
-    public static
+    // public static
+    // BubbleNetwork end
 
     /**
      * Manages sub commands.
@@ -134,12 +138,15 @@ public class UltraCosmetics extends JavaPlugin {
     /**
      * Config File.
      */
+    @Deprecated
     public static File file;
 
     /**
      * Economy, used only if Vault is enabled.
      */
-    public static Economy economy = null;
+    //BubbleNetwork start
+    public static Object economy = null;
+    //BubbleNetwork end
 
     public static SQLUtils sqlUtils;
 
@@ -277,7 +284,7 @@ public class UltraCosmetics extends JavaPlugin {
      *
      * @return
      */
-    public static Plugin getPlugin() {
+    public static UltraCosmetics getPlugin() {
         return core;
     }
 
@@ -323,7 +330,10 @@ public class UltraCosmetics extends JavaPlugin {
      *
      * @return last version published on Spigot.
      */
+    //BubbleNetwork start
+    @Deprecated
     public static String getLastVersion() {
+        /*
         try {
             HttpURLConnection con = (HttpURLConnection) new URL("http://www.spigotmc.org/api/general.php").openConnection();
             con.setDoOutput(true);
@@ -338,8 +348,10 @@ public class UltraCosmetics extends JavaPlugin {
         } catch (Exception ex) {
             System.out.print("[UltraCosmetics] Failed to check for an update on spigot. ");
         }
+        */
         return null;
     }
+    //BubbleNetwork end
 
     /**
      * Removes color in a text.
@@ -364,7 +376,7 @@ public class UltraCosmetics extends JavaPlugin {
     @Override
     public void onEnable() {
         if (!getServer().getVersion().contains("1.8.8")) {
-            System.out.println("----------------------------\n\nUltraCosmetics requires Spigot 1.8.8 to work!\n\n----------------------------");
+            System.out.println("----------------------------\n\nUltraCosmetics requires 1.8.8 to work!\n\n----------------------------");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -387,6 +399,8 @@ public class UltraCosmetics extends JavaPlugin {
         log("");
         log("Loading configuration...");
 
+        //BubbleNetwork start
+        /*
         file = new File(getDataFolder(), "config.yml");
 
         if (!file.exists()) {
@@ -395,8 +409,22 @@ public class UltraCosmetics extends JavaPlugin {
             log("Config file doesn't exist yet.");
             log("Creating Config File and loading it.");
         }
+        */
+        InputStream stream = null;
+        try {
+            stream = copyFile();
+            config = CustomConfiguration.loadConfiguration(stream);
+        } catch (Throwable throwable) {
+            if(stream != null) {
+                try {
+                    stream.close();
+                } catch (Throwable throwable1) {
+                }
+            }
+            config = CustomConfiguration.loadConfiguration(new StringBufferInputStream(""));
+        }
 
-        config = CustomConfiguration.loadConfiguration(file);
+        //BubbleNetwork end
 
         List<String> enabledWorlds = new ArrayList<>();
         for (World world : Bukkit.getWorlds())
@@ -405,6 +433,12 @@ public class UltraCosmetics extends JavaPlugin {
 
         config.set("Disabled-Items", null);
 
+        //BubbleNetwork start
+        try {
+            copyFile();
+        } catch (IOException e) {
+        }
+        //BubbleNetwork end
         if (!config.contains("TreasureChests.Loots.Gadgets")) {
             config.createSection("TreasureChests.Loots.Gadgets", "Chance of getting a GADGET", "This is different from ammo!");
             config.set("TreasureChests.Loots.Gadgets.Enabled", true);
@@ -486,6 +520,9 @@ public class UltraCosmetics extends JavaPlugin {
             noteBlockAPIEnabled = true;
         }
 
+        //BubbleNetwork start
+        //BubbleNetwork end
+
 
         log("");
         log("Registering Messages...");
@@ -535,6 +572,7 @@ public class UltraCosmetics extends JavaPlugin {
 
         checkTreasureChests();
 
+        /*
         new Thread() {
 
             @Override
@@ -547,6 +585,8 @@ public class UltraCosmetics extends JavaPlugin {
                             p.sendMessage("§l§oUltraCosmetics > §c§lAn update is available: " + lastVersion);
             }
         }.run();
+        */
+        //BubbleNetwork end
 
         log("Registering Cosmetics...");
         setupCosmeticsConfigs();
@@ -565,7 +605,9 @@ public class UltraCosmetics extends JavaPlugin {
             log("");
         }
 
-        petRenameMoney = SettingsManager.getConfig().getBoolean("Pets-Rename.Requires-Money.Enabled");
+        //BubbleNetwork start
+        petRenameMoney = false;
+        /*
         if ((ammoEnabled
                 || (SettingsManager.getConfig().getBoolean("Pets-Rename.Enabled"))
                 && SettingsManager.getConfig().getBoolean("Pets-Rename.Requires-Money.Enabled"))) {
@@ -596,6 +638,12 @@ public class UltraCosmetics extends JavaPlugin {
             log("Connected to MySQL database.");
             log("");
         }
+        */
+        Core.vaultLoaded = vaultLoaded;
+        Core.placeHolderColor = placeHolderColor;
+        Core.commandManager = commandManager;
+        //BubbleNetwork end
+
         initPlayers();
 
         Bukkit.getScheduler().runTaskTimerAsynchronously(this, new FallDamageManager(), 0, 1);
@@ -665,7 +713,10 @@ public class UltraCosmetics extends JavaPlugin {
     /**
      * Starts MySQL loop.
      */
+    //BubbleNetwork start
+    @Deprecated
     private void startMySQL() {
+        /*
         if (!fileStorage) {
             Bukkit.getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
                 @Override
@@ -725,7 +776,9 @@ public class UltraCosmetics extends JavaPlugin {
                 }
             }, 0, 24000);
         }
+        */
     }
+    //BubbleNetwork end
 
     /**
      * Setup default Cosmetics config.
@@ -817,7 +870,10 @@ public class UltraCosmetics extends JavaPlugin {
     /**
      * Check Treasure Chests requirements.
      */
+    @Deprecated
+    //BubbleNetwork start
     private void checkTreasureChests() {
+        /*
         moneyTreasureLoot = SettingsManager.getConfig().getBoolean("TreasureChests.Loots.Money.Enabled");
         if (SettingsManager.getConfig().getBoolean("TreasureChests.Enabled")) {
             treasureChests = true;
@@ -835,14 +891,19 @@ public class UltraCosmetics extends JavaPlugin {
                 moneyTreasureLoot = false;
             }
         }
+        */
     }
+    //BubbleNetwork end
 
     /**
      * Setups Vault.
      *
      * @return {@code true} if it could be set up, otherwise {@code false}.
      */
+    //BubbleNetwork start
+    @Deprecated
     private boolean setupEconomy() {
+        /*
         RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
         if (economyProvider != null)
             economy = economyProvider.getProvider();
@@ -850,7 +911,10 @@ public class UltraCosmetics extends JavaPlugin {
         vaultLoaded = economy != null;
 
         return (economy != null);
+        */
+        return true;
     }
+    //BubbleNetwork end
 
     /**
      * Called when plugin disables.
@@ -873,7 +937,10 @@ public class UltraCosmetics extends JavaPlugin {
     /**
      * Checks for new update.
      */
+    //BubbleNetwork start
+    @Deprecated
     private void checkForUpdate() {
+        /*
         String currentVersion = UltraCosmetics.getPlugin().getDescription().getVersion()
                 .replace("Beta ", "")
                 .replace("Pre-", "")
@@ -888,7 +955,9 @@ public class UltraCosmetics extends JavaPlugin {
                 outdated = false;
         } else
             outdated = false;
+            */
     }
+    //BubbleNetwork end
 
     public static void openMainMenuFromOther(Player whoClicked) {
         if (customCommandBackArrow)
@@ -896,4 +965,23 @@ public class UltraCosmetics extends JavaPlugin {
         else
             MainMenuManager.openMenu(whoClicked);
     }
+
+    //BubbleNetwork start
+    public InputStream copyFile() throws IOException{
+        JarFile file = null;
+        try {
+            file = new JarFile(getFile());
+            JarEntry entry = file.getJarEntry("config.yml");
+            return file.getInputStream(entry);
+        }
+        finally {
+            if(file != null) {
+                try {
+                    file.close();
+                } catch (Throwable throwable) {
+                }
+            }
+        }
+    }
+    //BubbleNetwork end
 }

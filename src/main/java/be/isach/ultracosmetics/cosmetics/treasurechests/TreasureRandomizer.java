@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.cosmetics.treasurechests;
 
 import be.isach.ultracosmetics.Core;
+import be.isach.ultracosmetics.CustomPlayer;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
@@ -348,7 +349,13 @@ public class TreasureRandomizer {
     public void giveMoney() {
         int money = MathUtils.randomRangeInt(20, (int) SettingsManager.getConfig().get("TreasureChests.Loots.Money.Max"));
         name = MessageManager.getMessage("Treasure-Chests-Loot.Money").replace("%money%", money + "");
+        //BubbleNetwork start
+        CustomPlayer customPlayer = Core.getCustomPlayer(player);
+        customPlayer.getBukkitBubblePlayer().setTokens(customPlayer.getBukkitBubblePlayer().getTokens()+money);
+        /*
         Core.economy.depositPlayer(player, money);
+        */
+        //BubbleNetwork end
         itemStack = new ItemStack(Material.DOUBLE_PLANT);
         if (money > 3 * (int) SettingsManager.getConfig().get("TreasureChests.Loots.Money.Max") / 4)
             spawnRandomFirework(loc);

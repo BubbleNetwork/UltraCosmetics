@@ -14,6 +14,7 @@ import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
 import be.isach.ultracosmetics.cosmetics.suits.Suit;
 import be.isach.ultracosmetics.cosmetics.treasurechests.TreasureChest;
 import be.isach.ultracosmetics.util.ItemFactory;
+import com.thebubblenetwork.api.framework.BukkitBubblePlayer;
 import me.libraryaddict.disguise.DisguiseAPI;
 
 import org.bukkit.Bukkit;
@@ -26,6 +27,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -37,6 +39,8 @@ public class CustomPlayer {
      * Player UUID.
      */
     public UUID uuid;
+    //Cache
+    private BukkitBubblePlayer bukkitBubblePlayer;
 
     /**
      * Current Cosmetics.
@@ -80,6 +84,8 @@ public class CustomPlayer {
      * @param uuid The player UUID.
      */
     public CustomPlayer(UUID uuid) {
+        //BubbleNetwork start
+        /*
         try {
             this.uuid = uuid;
 
@@ -118,7 +124,10 @@ public class CustomPlayer {
         }else{
         	isLoaded = true;
         }
-
+        */
+        this.uuid = uuid;
+        isLoaded = true;
+        //BubbleNetwork end
     }
 
     /**
@@ -152,9 +161,11 @@ public class CustomPlayer {
      *
      * @return The player owning the CustomPlayer.
      */
+    //BubbleNetwork start
     public Player getPlayer() {
-        return Bukkit.getPlayer(uuid);
+        return getBukkitBubblePlayer().getPlayer();
     }
+    //BubbleNetwork end
 
     /**
      * Removes the current gadget.
@@ -210,10 +221,15 @@ public class CustomPlayer {
      * Removes a key to the player.
      */
     public void removeKey() {
+        //BubbleNetwork start
+        //TODO
+        /*
         if (Core.usingFileStorage())
             SettingsManager.getData(getPlayer()).set("Keys", getKeys() - 1);
         else
             Core.sqlUtils.removeKey(getPlayer().getUniqueId());
+            */
+        //BubbleNetwork end
     }
 
     /**
@@ -263,6 +279,9 @@ public class CustomPlayer {
     }
 
     public double getBalance() {
+        //BubbleNetwork start
+        return getBukkitBubblePlayer().getTokens();
+        /*
         try {
             if (Core.vaultLoaded && Core.economy != null)
                 return Core.economy.getBalance(getPlayer());
@@ -271,6 +290,8 @@ public class CustomPlayer {
             return 0;
         }
         return 0;
+        */
+        //BubbleNetwork end
     }
 
     /**
@@ -404,10 +425,15 @@ public class CustomPlayer {
      * @param name    The new name.
      */
     public void setPetName(String petName, String name) {
+        //BubbleNetwork start
+        //TODO
+        /*
         if (Core.usingFileStorage())
             SettingsManager.getData(getPlayer()).set("Pet-Names." + petName, name);
         else
             Core.sqlUtils.setName(getPlayer(), petName, name);
+            */
+        //BubbleNetwork end
     }
 
     /**
@@ -417,6 +443,9 @@ public class CustomPlayer {
      * @return The pet name.
      */
     public String getPetName(String petName) {
+        //BubbleNetwork start
+        //TODO
+        /*
         try {
             if (Core.usingFileStorage()) {
                 return SettingsManager.getData(getPlayer()).get("Pet-Names." + petName);
@@ -428,6 +457,9 @@ public class CustomPlayer {
         } catch (NullPointerException e) {
             return null;
         }
+        */
+        return null;
+        //BubbleNetwork end
     }
 
     /**
@@ -437,11 +469,16 @@ public class CustomPlayer {
      * @param amount The ammo amount to give.
      */
     public void addAmmo(String name, int amount) {
+        //BubbleNetwork start
+        //TODO
+        /*
         if (Core.isAmmoEnabled())
             if (Core.usingFileStorage())
                 SettingsManager.getData(getPlayer()).set("Ammo." + name, getAmmo(name) + amount);
             else
                 Core.sqlUtils.addAmmo(getPlayer().getUniqueId(), name, amount);
+                */
+        //BubbleNetwork finish
         if (currentGadget != null)
             getPlayer().getInventory().setItem((int) SettingsManager.getConfig().get("Gadget-Slot"),
                     ItemFactory.create(currentGadget.getMaterial(), currentGadget.getData(),
@@ -456,11 +493,16 @@ public class CustomPlayer {
      */
     public void setGadgetsEnabled(Boolean enabled) {
         try {
+            //BubbleNetwork start
+            //TODO
+            /*
             if (Core.usingFileStorage()) {
                 SettingsManager.getData(getPlayer()).set("Gadgets-Enabled", enabled);
             } else {
                 Core.sqlUtils.setGadgetsEnabled(getPlayer(), enabled);
             }
+            */
+            //BubbleNetwork end
             if (enabled) {
                 getPlayer().sendMessage(MessageManager.getMessage("Enabled-Gadgets"));
                 this.cache_hasGadgetsEnable = 1;
@@ -482,6 +524,17 @@ public class CustomPlayer {
         if(!isLoaded)
         	return false;
 
+        //BubbleNetwork start
+        //TODO
+        if(true){
+            cache_hasGadgetsEnable = 1;
+            return true;
+        }
+        else{
+            cache_hasGadgetsEnable = 0;
+            return false;
+        }
+        /*
         try {
             if (Core.usingFileStorage()) {
                 return SettingsManager.getData(getPlayer()).get("Gadgets-Enabled");
@@ -496,7 +549,8 @@ public class CustomPlayer {
             }
         } catch (NullPointerException e) {
             return true;
-        }
+        }*/
+        //BubbleNetwork end
     }
 
     /**
@@ -505,11 +559,15 @@ public class CustomPlayer {
      * @param enabled if player should be able to see his own morph.
      */
     public void setSeeSelfMorph(Boolean enabled) {
+        //BubbleNetwork start
+        //TODO
+        /*
         if (Core.usingFileStorage()) {
             SettingsManager.getData(getPlayer()).set("Third-Person-Morph-View", enabled);
         } else {
             Core.sqlUtils.setSeeSelfMorph(getPlayer(), enabled);
-        }
+        }*/
+        //BubbleNetwork end
         if (enabled) {
             getPlayer().sendMessage(MessageManager.getMessage("Enabled-SelfMorphView"));
             this.cache_canSeeSelfMorph = 1;
@@ -528,6 +586,9 @@ public class CustomPlayer {
         // Make sure it won't be affected before load finished, especially for SQL
         if(!isLoaded)
         	return false;
+        //BubbleNetwork start
+        //TODO
+        /*
         try {
             if (Core.usingFileStorage()) {
                 return SettingsManager.getData(getPlayer()).get("Third-Person-Morph-View");
@@ -544,6 +605,9 @@ public class CustomPlayer {
         } catch (NullPointerException e) {
             return false;
         }
+        */
+        return true;
+        //BubbleNetwork end
     }
 
     /**
@@ -552,14 +616,23 @@ public class CustomPlayer {
      * @param name The gadget.
      * @return The ammo of the given gadget.
      */
+    //BubbleNetwork start
     public int getAmmo(String name) {
+        Map<String,Integer> items = bukkitBubblePlayer.getHubItems();
+        if(items.containsKey(name)){
+            return items.get(name);
+        }
+        return 0;
+        /*
         if (Core.isAmmoEnabled())
             if (Core.usingFileStorage())
                 return (int) SettingsManager.getData(getPlayer()).get("Ammo." + name);
             else
                 return Core.sqlUtils.getAmmo(getPlayer().getUniqueId(), name);
         return 0;
+        */
     }
+    //BubbleNetwork end
 
     /**
      * Clears current Treasure Chest.
@@ -575,7 +648,10 @@ public class CustomPlayer {
      *
      * @param name The gadget.
      */
+    //BubbleNetwork start
     public void removeAmmo(String name) {
+        bukkitBubblePlayer.setHubItem(name,getAmmo(name)-1);
+        /*
         if (Core.isAmmoEnabled()) {
             if (Core.usingFileStorage()) {
                 SettingsManager.getData(getPlayer()).set("Ammo." + name, getAmmo(name) - 1);
@@ -583,7 +659,9 @@ public class CustomPlayer {
                 Core.sqlUtils.removeAmmo(getPlayer().getUniqueId(), name);
             }
         }
+        */
     }
+    //BubbleNetwork end
 
     /**
      * Gives the Menu Item.
@@ -635,4 +713,14 @@ public class CustomPlayer {
     public UUID getUuid() {
         return uuid;
     }
+
+    //BubbleNetwork start
+    public BukkitBubblePlayer getBukkitBubblePlayer(){
+        if(bukkitBubblePlayer != null){
+            return bukkitBubblePlayer;
+        }
+        bukkitBubblePlayer = BukkitBubblePlayer.getObject(uuid);
+        return  bukkitBubblePlayer;
+    }
+    //BubbleNetwork end
 }

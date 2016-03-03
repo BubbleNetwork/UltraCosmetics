@@ -6,6 +6,7 @@ import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.treasurechests.TreasureChest;
 import be.isach.ultracosmetics.cosmetics.treasurechests.TreasureChestDesign;
 import be.isach.ultracosmetics.util.Cuboid;
+import com.thebubblenetwork.api.framework.BukkitBubblePlayer;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -103,7 +104,13 @@ public class TreasureChestManager implements Listener {
                 && event.getCurrentItem().getItemMeta().hasDisplayName()) {
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(MessageManager.getMessage("Purchase"))) {
                 if (Core.getCustomPlayer((Player) event.getWhoClicked()).getBalance() >= (int) SettingsManager.getConfig().get("TreasureChests.Key-Price")) {
+                    //BubbleNetwork start
+                    BukkitBubblePlayer player = BukkitBubblePlayer.getObject(event.getWhoClicked().getUniqueId());
+                    player.setTokens(player.getTokens() - (int) SettingsManager.getConfig().get("TreasureChests.Key-Price"));
+                    /*
                     Core.economy.withdrawPlayer((Player) event.getWhoClicked(), (int) SettingsManager.getConfig().get("TreasureChests.Key-Price"));
+                    */
+                    //BubbleNetwork end
                     Core.getCustomPlayer((Player) event.getWhoClicked()).addKey();
                     event.getWhoClicked().sendMessage(MessageManager.getMessage("Successful-Purchase"));
                     event.getWhoClicked().closeInventory();

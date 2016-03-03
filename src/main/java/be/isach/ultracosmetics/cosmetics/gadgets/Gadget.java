@@ -8,6 +8,7 @@ import be.isach.ultracosmetics.manager.GadgetManager;
 import be.isach.ultracosmetics.util.Cuboid;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.PlayerUtils;
+import com.thebubblenetwork.api.framework.BukkitBubblePlayer;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftInventory;
@@ -359,7 +360,13 @@ public abstract class Gadget implements Listener {
                     String cancel = MessageManager.getMessage("Cancel");
                     if (displayName.equals(purchase)) {
                         if (Core.getCustomPlayer((Player) event.getWhoClicked()).getBalance() >= getPrice()) {
+                            //BubbleNetwork start
+                            BukkitBubblePlayer player = BukkitBubblePlayer.getObject(event.getWhoClicked().getUniqueId());
+                            player.setTokens(player.getTokens()-getPrice());
+                            /*
                             Core.economy.withdrawPlayer((Player) event.getWhoClicked(), getPrice());
+                            */
+                            //BubbleNetwork end
                             Core.getCustomPlayer((Player) event.getWhoClicked()).addAmmo(type.toString().toLowerCase(), getResultAmmoAmount());
                             event.getWhoClicked().sendMessage(MessageManager.getMessage("Successful-Purchase"));
                             if (openGadgetsInvAfterAmmo)

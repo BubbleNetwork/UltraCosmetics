@@ -162,6 +162,18 @@ public class CustomConfiguration extends YamlConfiguration {
         return config;
     }
 
+    public static CustomConfiguration loadConfiguration(InputStream stream) {
+        CustomConfiguration config = new CustomConfiguration();
+        try {
+            config.load(stream);
+        } catch (FileNotFoundException ignored) {
+            ;
+        } catch (IOException | InvalidConfigurationException ex) {
+            Bukkit.getLogger().log(Level.SEVERE, "Cannot load " + stream, ex);
+        }
+        return config;
+    }
+
     private static String getPathToComment(List<String> configContents, int lineIndex, String configLine) {
         if (configContents != null && lineIndex >= 0 && lineIndex < configContents.size() - 1 && configLine != null) {
             String trimmedConfigLine = trimPrefixSpaces(configLine);
