@@ -211,10 +211,15 @@ public class CustomPlayer {
      * Gives a key to the player.
      */
     public void addKey() {
+        //BubbleNetwork start
+        //TODO
+        /*
         if (Core.usingFileStorage())
             SettingsManager.getData(getPlayer()).set("Keys", getKeys() + 1);
         else
             Core.sqlUtils.addKey(getPlayer().getUniqueId());
+            */
+        //BubbleNetwork end
     }
 
     /**
@@ -236,7 +241,13 @@ public class CustomPlayer {
      * @return The amount of keys that the player owns.
      */
     public int getKeys() {
+        //BubbleNetwork start
+        //TODO
+        /*
         return Core.usingFileStorage() ? (int) SettingsManager.getData(getPlayer()).get("Keys") : Core.sqlUtils.getKeys(getPlayer().getUniqueId());
+        */
+        return 0;
+        //BubbleNetwork end
     }
 
     /**

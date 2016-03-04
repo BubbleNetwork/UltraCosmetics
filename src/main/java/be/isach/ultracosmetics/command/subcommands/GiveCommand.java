@@ -136,7 +136,9 @@ public class GiveCommand extends SubCommand {
             return;
         }
 
-        OfflinePlayer receiver;
+        //BubbleNetwork start
+        Player receiver;
+        //BubbleNetwork end
 
         String arg1 = args[1].toLowerCase();
         if (arg1.startsWith("k")) {
@@ -175,6 +177,8 @@ public class GiveCommand extends SubCommand {
                 return;
             }
             receiver = Bukkit.getPlayer(args[4]);
+            //BubbleNetwork start
+            /*
             if (receiver == null
                     && Bukkit.getOfflinePlayer(args[4]) == null) {
                 sender.sendMessage("  §c§lPlayer " + args[4] + " not found!");
@@ -185,6 +189,8 @@ public class GiveCommand extends SubCommand {
 
                 receiver = Bukkit.getOfflinePlayer(args[4]);
             }
+            */
+            //BubbleNetwork end
 
             if (receiver == null) {
                 sender.sendMessage("  §c§lPlayer " + args[4] + " not found!");
@@ -220,32 +226,39 @@ public class GiveCommand extends SubCommand {
         }
     }
 
-    private void addKey(OfflinePlayer offlinePlayer) {
+    //BubbleNetwork start
+    private void addKey(Player offlinePlayer) {
         if (offlinePlayer == null || offlinePlayer.getUniqueId() == null)
             return;
-        if (offlinePlayer instanceof Player)
+        //if (offlinePlayer instanceof Player)
             Core.getPlayerManager().getCustomPlayer((Player) offlinePlayer).addKey();
+        /*
         else {
             if (Core.usingFileStorage())
                 SettingsManager.getData(offlinePlayer.getUniqueId()).set("Keys", getKeys(offlinePlayer.getUniqueId()) + 1);
             else
                 Core.sqlUtils.addKey(offlinePlayer.getUniqueId());
         }
+        */
     }
+    //BubbleNetwork end
 
-    private void addAmmo(GadgetType gadgetType, OfflinePlayer receiver, int ammo) {
+    //BubbleNetwork start
+    private void addAmmo(GadgetType gadgetType, Player receiver, int ammo) {
         if (receiver == null || receiver.getUniqueId() == null)
             return;
-        if (receiver instanceof Player)
+        //if (receiver instanceof Player)
             Core.getPlayerManager().getCustomPlayer((Player) receiver).addAmmo(gadgetType.toString().toLowerCase(), ammo);
+        /*
         else {
             if (Core.usingFileStorage())
                 SettingsManager.getData(receiver.getUniqueId()).set("Ammo." + gadgetType.toString().toLowerCase(),
                         ((int) SettingsManager.getData(receiver.getUniqueId()).get("Ammo." + gadgetType.toString().toLowerCase())) + ammo);
             else
                 Core.sqlUtils.addAmmo(receiver.getUniqueId(), gadgetType.toString().toLowerCase(), ammo);
-        }
+        }*/
     }
+    //BubbleNetwork end
 
     private int getKeys(UUID uuid) {
         return Core.usingFileStorage() ? (int) SettingsManager.getData(uuid).get("Keys") : Core.sqlUtils.getKeys(uuid);
