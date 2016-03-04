@@ -189,6 +189,8 @@ Pets-Are-Babies: true
 # to do so?
 Mounts-Block-Trails: true
 
+#BubbleNetwork start
+#DEPRECATED
 # This option allows to use ammo
 # for gadgets, for limited uses.
 # Ammo can be given with /uc give ammo
@@ -197,15 +199,17 @@ Mounts-Block-Trails: true
 # For the system: 'file' or 'mysql'
 #
 # If you set mysql, please fill the MySQL infos.
-Ammo-System-For-Gadgets:
-  Enabled: false
-  System: file
-  MySQL:
-    hostname: localhost
-    username: root
-    password: password
-    port: '3306'
-    database: UltraCosmetics
+#Ammo-System-For-Gadgets:
+#  Enabled: false
+#  System: file
+#  MySQL:
+#    hostname: localhost
+#    username: root
+#    password: password
+#    port: '3306'
+#    database: UltraCosmetics
+# BubbleNetwork end
+
 # The menu item settings.
 #
 # List for type: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html

@@ -260,9 +260,12 @@ public class UltraCosmetics extends JavaPlugin{
     /**
      * @return if file storage is used.
      */
+    //BubbleNetwork start
+    @Deprecated
     public static boolean usingFileStorage() {
         return fileStorage;
     }
+    //BubbleNetwork end
 
     public static boolean treasureChestsEnabled() {
         return treasureChests;
@@ -434,11 +437,6 @@ public class UltraCosmetics extends JavaPlugin{
         config.set("Disabled-Items", null);
 
         //BubbleNetwork start
-        try {
-            copyFile();
-        } catch (IOException e) {
-        }
-        //BubbleNetwork end
         if (!config.contains("TreasureChests.Loots.Gadgets")) {
             config.createSection("TreasureChests.Loots.Gadgets", "Chance of getting a GADGET", "This is different from ammo!");
             config.set("TreasureChests.Loots.Gadgets.Enabled", true);
@@ -477,6 +475,8 @@ public class UltraCosmetics extends JavaPlugin{
         config.addDefault("Categories-Enabled.Suits", true, "Do you want to enable Suits category?");
 
         config.addDefault("Categories.Gadgets.Cooldown-In-ActionBar", true, "You wanna show the cooldown of", "current gadget in action bar?");
+
+        //BubbleNetwork end
 
         saveConfig();
 
@@ -519,9 +519,6 @@ public class UltraCosmetics extends JavaPlugin{
             log("");
             noteBlockAPIEnabled = true;
         }
-
-        //BubbleNetwork start
-        //BubbleNetwork end
 
 
         log("");

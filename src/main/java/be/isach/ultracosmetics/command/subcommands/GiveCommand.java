@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.command.subcommands;
 
 import be.isach.ultracosmetics.Core;
+import be.isach.ultracosmetics.CustomPlayer;
 import be.isach.ultracosmetics.command.SubCommand;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
@@ -35,12 +36,16 @@ public class GiveCommand extends SubCommand {
             return;
         }
 
-        OfflinePlayer receiver = sender;
+        //BubbleNetwork start
+        Player receiver = sender;
+        //BubbleNetwork end
 
         String arg1 = args[1].toLowerCase();
         if (arg1.startsWith("k")) { // Giving key.
             if (args.length > 3) {
                 receiver = Bukkit.getPlayer(args[3]);
+                //BubbleNetwork start
+                /*
                 if (receiver == null
                         && Bukkit.getOfflinePlayer(args[3]) == null) {
                     sender.sendMessage("  §c§lPlayer " + args[3] + " not found!");
@@ -51,6 +56,8 @@ public class GiveCommand extends SubCommand {
 
                     receiver = Bukkit.getOfflinePlayer(args[3]);
                 }
+                */
+                //BubbleNetwork end
 
                 if (receiver == null) {
                     sender.sendMessage("  §c§lPlayer " + args[3] + " not found!");
@@ -77,6 +84,8 @@ public class GiveCommand extends SubCommand {
             }
             if (args.length > 4) {
                 receiver = Bukkit.getPlayer(args[4]);
+                //BubbleNetwork start
+                /*
                 if (receiver == null
                         && Bukkit.getOfflinePlayer(args[4]) == null) {
                     sender.sendMessage("  §c§lPlayer " + args[4] + " not found and has never come!");
@@ -87,6 +96,9 @@ public class GiveCommand extends SubCommand {
 
                     receiver = Bukkit.getOfflinePlayer(args[4]);
                 }
+                */
+
+                //BubbleNetwork end
 
                 if (receiver == null) {
                     sender.sendMessage("  §c§lPlayer " + args[4] + " not found and has never come!");
@@ -143,6 +155,8 @@ public class GiveCommand extends SubCommand {
         String arg1 = args[1].toLowerCase();
         if (arg1.startsWith("k")) {
             receiver = Bukkit.getPlayer(args[3]);
+            //BubbleNetwork start
+            /*
             if (receiver == null
                     && Bukkit.getOfflinePlayer(args[3]) == null) {
                 sender.sendMessage("  §c§lPlayer " + args[3] + " not found and has never come!");
@@ -153,6 +167,8 @@ public class GiveCommand extends SubCommand {
 
                 receiver = Bukkit.getOfflinePlayer(args[3]);
             }
+            */
+            //BubbleNetwork end
 
             if (receiver == null) {
                 sender.sendMessage("  §c§lPlayer " + args[3] + " not found and has never come!");
@@ -261,6 +277,12 @@ public class GiveCommand extends SubCommand {
     //BubbleNetwork end
 
     private int getKeys(UUID uuid) {
+        //BubbleNetwork start
+        CustomPlayer player = Core.getCustomPlayer(Bukkit.getPlayer(uuid));
+        return player.getKeys();
+        /*
         return Core.usingFileStorage() ? (int) SettingsManager.getData(uuid).get("Keys") : Core.sqlUtils.getKeys(uuid);
+        */
+        //BubbleNetwork end
     }
 }
