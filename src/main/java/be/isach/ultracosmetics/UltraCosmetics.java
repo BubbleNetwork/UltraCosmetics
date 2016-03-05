@@ -687,14 +687,19 @@ public class UltraCosmetics extends JavaPlugin{
     /**
      * Overrides config saving to keep comments.
      */
+    //BubbleNetwork start
+    @Deprecated
     @Override
     public void saveConfig() {
+        /*
         try {
             config.save(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
+    //BubbleNetwork end
 
     /**
      * Initialize players.
