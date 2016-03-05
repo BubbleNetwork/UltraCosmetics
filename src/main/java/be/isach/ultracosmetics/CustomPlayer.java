@@ -15,6 +15,8 @@ import be.isach.ultracosmetics.cosmetics.suits.Suit;
 import be.isach.ultracosmetics.cosmetics.treasurechests.TreasureChest;
 import be.isach.ultracosmetics.util.ItemFactory;
 import com.thebubblenetwork.api.framework.BukkitBubblePlayer;
+import com.thebubblenetwork.api.global.data.InvalidBaseException;
+import com.thebubblenetwork.api.global.data.PlayerData;
 import me.libraryaddict.disguise.DisguiseAPI;
 
 import org.bukkit.Bukkit;
@@ -212,7 +214,7 @@ public class CustomPlayer {
      */
     public void addKey() {
         //BubbleNetwork start
-        //TODO
+        getBukkitBubblePlayer().setKeys(getKeys()+1);
         /*
         if (Core.usingFileStorage())
             SettingsManager.getData(getPlayer()).set("Keys", getKeys() + 1);
@@ -227,7 +229,7 @@ public class CustomPlayer {
      */
     public void removeKey() {
         //BubbleNetwork start
-        //TODO
+        getBukkitBubblePlayer().setKeys(getKeys()-1);
         /*
         if (Core.usingFileStorage())
             SettingsManager.getData(getPlayer()).set("Keys", getKeys() - 1);
@@ -242,11 +244,10 @@ public class CustomPlayer {
      */
     public int getKeys() {
         //BubbleNetwork start
-        //TODO
+        return getBukkitBubblePlayer().getKeys();
         /*
         return Core.usingFileStorage() ? (int) SettingsManager.getData(getPlayer()).get("Keys") : Core.sqlUtils.getKeys(getPlayer().getUniqueId());
         */
-        return 0;
         //BubbleNetwork end
     }
 
@@ -437,7 +438,8 @@ public class CustomPlayer {
      */
     public void setPetName(String petName, String name) {
         //BubbleNetwork start
-        //TODO
+        //Manual set without API
+        getBukkitBubblePlayer().getData().set(PlayerData.PETNAME + "." + petName,name);
         /*
         if (Core.usingFileStorage())
             SettingsManager.getData(getPlayer()).set("Pet-Names." + petName, name);
@@ -455,7 +457,13 @@ public class CustomPlayer {
      */
     public String getPetName(String petName) {
         //BubbleNetwork start
-        //TODO
+        //Manual get without API
+        String name;
+        try {
+            return (name = getBukkitBubblePlayer().getData().getString(PlayerData.PETNAME + "." + petName)).equals("Unknown") ? null : name;
+        } catch (InvalidBaseException e) {
+            return null;
+        }
         /*
         try {
             if (Core.usingFileStorage()) {
@@ -469,7 +477,6 @@ public class CustomPlayer {
             return null;
         }
         */
-        return null;
         //BubbleNetwork end
     }
 
@@ -481,7 +488,6 @@ public class CustomPlayer {
      */
     public void addAmmo(String name, int amount) {
         //BubbleNetwork start
-        //TODO
         /*
         if (Core.isAmmoEnabled())
             if (Core.usingFileStorage())
@@ -489,6 +495,9 @@ public class CustomPlayer {
             else
                 Core.sqlUtils.addAmmo(getPlayer().getUniqueId(), name, amount);
                 */
+        Map<String,Integer> hubitems = getBukkitBubblePlayer().getHubItems();
+        int amt = hubitems.containsKey(name) ? hubitems.get(name) + amount : amount;
+        getBukkitBubblePlayer().setHubItem(name,amt);
         //BubbleNetwork finish
         if (currentGadget != null)
             getPlayer().getInventory().setItem((int) SettingsManager.getConfig().get("Gadget-Slot"),
@@ -505,7 +514,7 @@ public class CustomPlayer {
     public void setGadgetsEnabled(Boolean enabled) {
         try {
             //BubbleNetwork start
-            //TODO
+            getBukkitBubblePlayer().setUsingGadgets(enabled);
             /*
             if (Core.usingFileStorage()) {
                 SettingsManager.getData(getPlayer()).set("Gadgets-Enabled", enabled);
@@ -536,8 +545,7 @@ public class CustomPlayer {
         	return false;
 
         //BubbleNetwork start
-        //TODO
-        if(true){
+        if(getBukkitBubblePlayer().isUsingGadgets()){
             cache_hasGadgetsEnable = 1;
             return true;
         }
@@ -571,7 +579,8 @@ public class CustomPlayer {
      */
     public void setSeeSelfMorph(Boolean enabled) {
         //BubbleNetwork start
-        //TODO
+        //Manual set
+        getBukkitBubblePlayer().getData().set("SelfMorphView",enabled);
         /*
         if (Core.usingFileStorage()) {
             SettingsManager.getData(getPlayer()).set("Third-Person-Morph-View", enabled);
@@ -598,7 +607,20 @@ public class CustomPlayer {
         if(!isLoaded)
         	return false;
         //BubbleNetwork start
-        //TODO
+        boolean can;
+        try{
+            can = getBukkitBubblePlayer().getData().getBoolean("SelfMorphView");
+        }
+        catch (InvalidBaseException e){
+            can = true;
+        }
+        if(can){
+            cache_canSeeSelfMorph = 1;
+            return true;
+        }else{
+            cache_canSeeSelfMorph = 0;
+            return false;
+        }
         /*
         try {
             if (Core.usingFileStorage()) {
@@ -617,7 +639,6 @@ public class CustomPlayer {
             return false;
         }
         */
-        return true;
         //BubbleNetwork end
     }
 
