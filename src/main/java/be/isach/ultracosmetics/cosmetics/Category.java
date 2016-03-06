@@ -37,7 +37,7 @@ public enum Category {
      */
     Category(String configPath) {
         this.configPath = configPath;
-        this.is = initMData((String) (SettingsManager.getConfig().get("Categories." + configPath + ".Main-Menu-Item"))).toItemStack(1);
+        this.is = initMData(SettingsManager.conf.get("Categories." + configPath + ".Main-Menu-Item")).toItemStack(1);
         ItemMeta itemMeta = is.getItemMeta();
         itemMeta.setDisplayName(MessageManager.getMessage("Menu." + configPath));
         is.setItemMeta(itemMeta);
@@ -66,12 +66,14 @@ public enum Category {
      *
      * @return {@code true} if has arrow, otherwise {@code false}
      */
+    //BubbleNetwork start
     public boolean hasGoBackArrow() {
         if (!Core.treasureChestsEnabled()
                 && Core.enabledCategories.size() == 1)
             return false;
-        return (boolean) (SettingsManager.getConfig().get("Categories." + configPath + ".Go-Back-Arrow"));
+        return SettingsManager.conf.getBoolean("Categories." + configPath + ".Go-Back-Arrow");
     }
+    //BubbleNetwork end
 
     /**
      * Creates Material data from a text.
@@ -84,5 +86,4 @@ public enum Category {
         return new MaterialData(Integer.parseInt(name.split(":")[0]),
                 (name.split(":").length > 1 ? (byte) Integer.parseInt(name.split(":")[1]) : (byte) 0));
     }
-
 }

@@ -23,6 +23,9 @@ import be.isach.ultracosmetics.mysql.Table;
 import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.run.InvalidWorldManager;
 import be.isach.ultracosmetics.util.*;
+import com.thebubblenetwork.api.framework.BubbleNetwork;
+import com.thebubblenetwork.api.framework.plugin.AddonDescriptionFile;
+import com.thebubblenetwork.bubblelobby.BubbleLobby;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -34,6 +37,8 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
@@ -49,8 +54,13 @@ import java.util.jar.JarFile;
 /**
  * Created by sacha on 03/08/15.
  */
-//BubbleNetwork start
 public class UltraCosmetics extends JavaPlugin{
+    //BubbleNetwork start
+    public static File jarfile = BubbleLobby.getInstance().getManager().getJar();
+
+    public UltraCosmetics(){
+        super();
+    }
 
     // public static
     // BubbleNetwork end
@@ -267,7 +277,7 @@ public class UltraCosmetics extends JavaPlugin{
     //BubbleNetwork start
     @Deprecated
     public static boolean usingFileStorage() {
-        return fileStorage;
+        return false;
     }
     //BubbleNetwork end
 
@@ -405,25 +415,6 @@ public class UltraCosmetics extends JavaPlugin{
 
         log("");
         log("Loading configuration...");
-        SettingsManager.conf = new SettingsManager() {
-            public CustomConfiguration load() {
-                try{
-                    return CustomConfiguration.loadConfiguration(copyFile("config.yml"));
-                } catch (IOException e) {
-                    return new CustomConfiguration();
-                }
-            }
-        };
-
-        SettingsManager.messages = new SettingsManager() {
-            public CustomConfiguration load() {
-                try {
-                    return CustomConfiguration.loadConfiguration(copyFile("messages.yml"));
-                } catch (IOException e) {
-                    return new CustomConfiguration();
-                }
-            }
-        };
         config = SettingsManager.conf.fileConfiguration;
 
         //BubbleNetwork start
@@ -559,11 +550,13 @@ public class UltraCosmetics extends JavaPlugin{
         log("Registered commands.");
         log("");
 
-        String s = SettingsManager.getConfig().getString("Ammo-System-For-Gadgets.System");
-        fileStorage = s.equalsIgnoreCase("file");
-        placeHolderColor = SettingsManager.getConfig().getBoolean("Chat-Cosmetic-PlaceHolder-Color");
-        ammoEnabled = SettingsManager.getConfig().getBoolean("Ammo-System-For-Gadgets.Enabled");
-        cooldownInBar = SettingsManager.getConfig().getBoolean("Categories.Gadgets.Cooldown-In-ActionBar");
+        //BubbleNetwork start
+        //String s = SettingsManager.getConfig().getString("Ammo-System-For-Gadgets.System");
+        fileStorage = true;
+        placeHolderColor = true;
+        ammoEnabled = true;
+        cooldownInBar = true;
+        //BubbleNetwork end
 
         for (Category c : Category.values()) {
             if (c == Category.MORPHS)
@@ -581,6 +574,7 @@ public class UltraCosmetics extends JavaPlugin{
 
         checkTreasureChests();
 
+        //BubbleNetwork start
         /*
         new Thread() {
 
@@ -649,7 +643,7 @@ public class UltraCosmetics extends JavaPlugin{
         }
         */
         vaultLoaded = true;
-        Core.vaultLoaded = vaultLoaded;
+        Core.vaultLoaded = true;
         Core.placeHolderColor = placeHolderColor;
         Core.commandManager = commandManager;
         //BubbleNetwork end
@@ -984,23 +978,4 @@ public class UltraCosmetics extends JavaPlugin{
         else
             MainMenuManager.openMenu(whoClicked);
     }
-
-    //BubbleNetwork start
-    public InputStream copyFile(String s) throws IOException{
-        JarFile file = null;
-        try {
-            file = new JarFile(getFile());
-            JarEntry entry = file.getJarEntry(s);
-            return file.getInputStream(entry);
-        }
-        finally {
-            if(file != null) {
-                try {
-                    file.close();
-                } catch (Throwable throwable) {
-                }
-            }
-        }
-    }
-    //BubbleNetwork end
 }

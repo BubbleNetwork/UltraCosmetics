@@ -8,8 +8,12 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.UUID;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 /**
  * Created by sacha on 21/07/15.
@@ -21,8 +25,41 @@ public abstract class SettingsManager {
     // Translation config file.
     //private static SettingsManager messages = new SettingsManager("messages");
 
-    public static SettingsManager conf;
-    public static SettingsManager messages;
+    public static InputStream copyFile(String s) throws IOException {
+        JarFile file = null;
+        try {
+            file = new JarFile(Core.jarfile);
+            JarEntry entry = file.getJarEntry(s);
+            return file.getInputStream(entry);
+        } finally {
+            if (file != null) {
+                try {
+                    file.close();
+                } catch (Throwable throwable) {
+                }
+            }
+        }
+    }
+
+    public static SettingsManager conf = new SettingsManager() {
+        public CustomConfiguration load() {
+            try{
+                return CustomConfiguration.loadConfiguration(copyFile("config.yml"));
+            } catch (IOException e) {
+                return new CustomConfiguration();
+            }
+        }
+    };;
+    public static SettingsManager messages = new SettingsManager() {
+        public CustomConfiguration load() {
+            try {
+                return CustomConfiguration.loadConfiguration(copyFile("messages.yml"));
+            } catch (IOException e) {
+                return new CustomConfiguration();
+            }
+        }
+    };
+
     public CustomConfiguration fileConfiguration;
     //private File file;
 
@@ -67,6 +104,7 @@ public abstract class SettingsManager {
         fileConfiguration = Core.config;
         fileConfiguration = Core.config;
         */
+        fileConfiguration = load();
     }
 
     public abstract CustomConfiguration load();
@@ -88,7 +126,7 @@ public abstract class SettingsManager {
      * @return the messages SettingsManager.
      */
     public static CustomConfiguration getConfig() {
-        return Core.config;
+        return conf.fileConfiguration;
     }
 
     /**
