@@ -138,17 +138,21 @@ public class UltraCosmetics extends JavaPlugin{
     /**
      * Config File.
      */
+    //BubbleNetwork start
     @Deprecated
     public static File file;
+    //BubbleNetwork end
 
     /**
      * Economy, used only if Vault is enabled.
      */
     //BubbleNetwork start
+    /*
     public static Object economy = null;
-    //BubbleNetwork end
 
     public static SQLUtils sqlUtils;
+    */
+    //BubbleNetwork end
 
     /**
      * If true, plugin is outdated.
@@ -401,6 +405,26 @@ public class UltraCosmetics extends JavaPlugin{
 
         log("");
         log("Loading configuration...");
+        SettingsManager.conf = new SettingsManager() {
+            public CustomConfiguration load() {
+                try{
+                    return CustomConfiguration.loadConfiguration(copyFile("config.yml"));
+                } catch (IOException e) {
+                    return new CustomConfiguration();
+                }
+            }
+        };
+
+        SettingsManager.messages = new SettingsManager() {
+            public CustomConfiguration load() {
+                try {
+                    return CustomConfiguration.loadConfiguration(copyFile("messages.yml"));
+                } catch (IOException e) {
+                    return new CustomConfiguration();
+                }
+            }
+        };
+        config = SettingsManager.conf.fileConfiguration;
 
         //BubbleNetwork start
         /*
@@ -412,20 +436,8 @@ public class UltraCosmetics extends JavaPlugin{
             log("Config file doesn't exist yet.");
             log("Creating Config File and loading it.");
         }
+
         */
-        InputStream stream = null;
-        try {
-            stream = copyFile();
-            config = CustomConfiguration.loadConfiguration(stream);
-        } catch (Throwable throwable) {
-            if(stream != null) {
-                try {
-                    stream.close();
-                } catch (Throwable throwable1) {
-                }
-            }
-            config = CustomConfiguration.loadConfiguration(new StringBufferInputStream(""));
-        }
 
         //BubbleNetwork end
 
@@ -603,7 +615,7 @@ public class UltraCosmetics extends JavaPlugin{
         }
 
         //BubbleNetwork start
-        petRenameMoney = false;
+        petRenameMoney = true;
         /*
         if ((ammoEnabled
                 || (SettingsManager.getConfig().getBoolean("Pets-Rename.Enabled"))
@@ -636,6 +648,7 @@ public class UltraCosmetics extends JavaPlugin{
             log("");
         }
         */
+        vaultLoaded = true;
         Core.vaultLoaded = vaultLoaded;
         Core.placeHolderColor = placeHolderColor;
         Core.commandManager = commandManager;
@@ -670,11 +683,15 @@ public class UltraCosmetics extends JavaPlugin{
             morphMenuListener = new MorphManager();
             registerListener(morphMenuListener);
         }
+        //BubbleNetwork start
+        /*
         try {
             config.save(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
+        //BubbleNetwork end
         log("Listeners registered.");
         log("");
         log("");
@@ -969,11 +986,11 @@ public class UltraCosmetics extends JavaPlugin{
     }
 
     //BubbleNetwork start
-    public InputStream copyFile() throws IOException{
+    public InputStream copyFile(String s) throws IOException{
         JarFile file = null;
         try {
             file = new JarFile(getFile());
-            JarEntry entry = file.getJarEntry("config.yml");
+            JarEntry entry = file.getJarEntry(s);
             return file.getInputStream(entry);
         }
         finally {

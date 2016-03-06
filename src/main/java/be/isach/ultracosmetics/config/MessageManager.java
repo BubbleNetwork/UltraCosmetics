@@ -11,7 +11,7 @@ public class MessageManager {
      * Set up the messages in the config.
      */
     public MessageManager() {
-        this.settingsManager = SettingsManager.getMessages();
+        this.settingsManager = SettingsManager.messages;
         loadMessages();
     }
 

@@ -14,21 +14,24 @@ import java.util.UUID;
 /**
  * Created by sacha on 21/07/15.
  */
-public class SettingsManager {
+//BubbleNetwork start
+public abstract class SettingsManager {
 
     // Config file.
     // Translation config file.
-    private static SettingsManager messages = new SettingsManager("messages");
+    //private static SettingsManager messages = new SettingsManager("messages");
 
-    private static SettingsManager conf;
-    public FileConfiguration fileConfiguration;
-    private File file;
+    public static SettingsManager conf;
+    public static SettingsManager messages;
+    public CustomConfiguration fileConfiguration;
+    //private File file;
 
     /**
      * Creates a new file and defines fileConfiguration and file.
      *
      * @param fileName
      */
+    /*
     private SettingsManager(String fileName) {
 
         if (!Core.getPlugin().getDataFolder().exists()) {
@@ -51,25 +54,33 @@ public class SettingsManager {
 
         fileConfiguration = YamlConfiguration.loadConfiguration(file);
     }
+    */
 
     /**
      * Creates a new file and defines fileConfiguration and file.
      *
      * @param fileName
      */
-    private SettingsManager() {
+    public SettingsManager() {
+        /*
         file = new File(Core.getPlugin().getDataFolder(), "config.yml");
         fileConfiguration = Core.config;
+        fileConfiguration = Core.config;
+        */
     }
+
+    public abstract CustomConfiguration load();
 
     /**
      * Gets the messages SettingsManager.
      *
      * @return the messages SettingsManager.
      */
+    /*
     public static SettingsManager getMessages() {
         return messages;
     }
+    */
 
     /**
      * Gets the messages SettingsManager.
@@ -86,9 +97,11 @@ public class SettingsManager {
      * @param p The player.
      * @return the data settings manager of a player.
      */
+    /*
     public static SettingsManager getData(Player p) {
         return new SettingsManager("/data/" + p.getUniqueId().toString());
     }
+    */
 
     /**
      * Gets the data settings manager of a uuid.
@@ -96,15 +109,18 @@ public class SettingsManager {
      * @param p The player.
      * @return the data settings manager of a uuid.
      */
+    /*
     public static SettingsManager getData(UUID uuid) {
         return new SettingsManager("/data/" + uuid.toString());
     }
+    */
 
     public static boolean hasData(UUID uuid) {
         return Arrays.asList(Core.getPlugin().getDataFolder()
                 .listFiles()).contains(new File(uuid.toString() + ".yml"));
     }
 
+    /*
     public void reload() {
         try {
             fileConfiguration = YamlConfiguration.loadConfiguration(file);
@@ -112,6 +128,7 @@ public class SettingsManager {
             e.printStackTrace();
         }
     }
+    */
 
     /**
      * Sets the value of a given path.
@@ -121,11 +138,13 @@ public class SettingsManager {
      */
     public void set(String path, Object value) {
         fileConfiguration.set(path, value);
+        /*
         try {
             fileConfiguration.save(file);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
     }
 
     /**
@@ -164,6 +183,7 @@ public class SettingsManager {
      * @param path  The fileConfiguration path.
      * @param value The value for this path.
      */
+
     public void addDefault(String path, Object value) {
         if (!fileConfiguration.contains(path))
             set(path, value);
@@ -175,15 +195,19 @@ public class SettingsManager {
      * @param path
      * @return the configuration section created for the given path.
      */
+
     public ConfigurationSection createConfigurationSection(String path) {
         ConfigurationSection cs = fileConfiguration.createSection(path);
+        /*
         try {
             fileConfiguration.save(file);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
         return cs;
     }
+
 
 
     @SuppressWarnings("unchecked")
@@ -198,5 +222,5 @@ public class SettingsManager {
     public boolean contains(String path) {
         return fileConfiguration.contains(path);
     }
-
 }
+//BubbleNetwork end

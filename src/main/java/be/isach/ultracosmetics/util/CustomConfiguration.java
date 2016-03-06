@@ -18,10 +18,12 @@ public class CustomConfiguration extends YamlConfiguration {
     private boolean newLineAfterHeader = false;
     private boolean newLinePerKey = false;
 
-    private CustomConfiguration() {
+    //BubbleNetwork start
+    public CustomConfiguration() {
         super();
         this.comments = new LinkedHashMap<>();
     }
+    //BubbleNetwork end
 
     public void addDefault(String path, Object defaultValue, String... comments) {
         if (!contains(path))
