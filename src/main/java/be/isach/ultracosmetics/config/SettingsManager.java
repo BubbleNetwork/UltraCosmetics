@@ -14,6 +14,8 @@ import java.util.Arrays;
 import java.util.UUID;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by sacha on 21/07/15.
@@ -25,27 +27,16 @@ public abstract class SettingsManager {
     // Translation config file.
     //private static SettingsManager messages = new SettingsManager("messages");
 
-    public static InputStream copyFile(String s) throws IOException {
-        JarFile file = null;
-        try {
-            file = new JarFile(Core.jarfile);
-            JarEntry entry = file.getJarEntry(s);
-            return file.getInputStream(entry);
-        } finally {
-            if (file != null) {
-                try {
-                    file.close();
-                } catch (Throwable throwable) {
-                }
-            }
-        }
+    public static InputStream copyFile(String s){
+        return Core.instance.getResource(s);
     }
 
     public static SettingsManager conf = new SettingsManager() {
         public CustomConfiguration load() {
             try{
                 return CustomConfiguration.loadConfiguration(copyFile("config.yml"));
-            } catch (IOException e) {
+            } catch (Throwable throwable) {
+                Logger.getLogger("Minecraft","UltraCosmetics").log(Level.WARNING,"Could not copy configuration",throwable);
                 return new CustomConfiguration();
             }
         }
@@ -54,7 +45,8 @@ public abstract class SettingsManager {
         public CustomConfiguration load() {
             try {
                 return CustomConfiguration.loadConfiguration(copyFile("messages.yml"));
-            } catch (IOException e) {
+            } catch (Throwable throwable) {
+                Logger.getLogger("Minecraft","UltraCosmetics").log(Level.WARNING,"Could not copy messages",throwable);
                 return new CustomConfiguration();
             }
         }

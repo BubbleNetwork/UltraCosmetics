@@ -56,7 +56,7 @@ import java.util.jar.JarFile;
  */
 public class UltraCosmetics extends JavaPlugin{
     //BubbleNetwork start
-    public static File jarfile = BubbleLobby.getInstance().getManager().getJar();
+    public static File jarfile = new File("plugins/BubbleFramework/UltraCosmetics/UltraCosmetics.jar".replace("/",File.separator));
 
     public UltraCosmetics(){
         super();
@@ -589,15 +589,17 @@ public class UltraCosmetics extends JavaPlugin{
             }
         }.run();
         */
-        //BubbleNetwork end
 
         log("Registering Cosmetics...");
         setupCosmeticsConfigs();
+        /*
         try {
             config.save(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
+        //BubbleNetwork end
         log("Gadgets Registered.");
 
         if (!Bukkit.getPluginManager().isPluginEnabled("LibsDisguises")) {
@@ -685,14 +687,14 @@ public class UltraCosmetics extends JavaPlugin{
             e.printStackTrace();
         }
         */
-        //BubbleNetwork end
         log("Listeners registered.");
         log("");
         log("");
         log("UltraCosmetics finished loading and is now enabled!");
         log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 
-        GeneralUtil.printPermissions();
+        //GeneralUtil.printPermissions();
+        //BubbleNetwork end
     }
 
     /**
@@ -851,11 +853,15 @@ public class UltraCosmetics extends JavaPlugin{
             config.addDefault("Suits." + suit.getConfigName() + ".Show-Description", true, "if true, the description of this suit will be showed.");
             config.addDefault("Suits." + suit.getConfigName() + ".Can-Be-Found-In-Treasure-Chests", true, "if true, it'll be possible to find", "it in treasure chests");
         }
+        //BubbleNetwork start
+        /*
         try {
             config.save(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
+        //BubbleNetwork end
         for (GadgetType gadgetType : GadgetType.values())
             if (gadgetType.isEnabled())
                 GadgetType.gadgetTypes.add(gadgetType);
