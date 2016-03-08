@@ -262,9 +262,7 @@ Remove-Gadget-With-Drop: false
 # List of the worlds
 # where cosmetics are enabled!
 Enabled-Worlds:
-- world
-- world_nether
-- world_the_end
+- Lobby
 Gadgets:
   BatBlaster:
     Cooldown: 8.0
