@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.manager;
 
 import be.isach.ultracosmetics.Core;
+import be.isach.ultracosmetics.CustomPlayer;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.util.ItemFactory;
@@ -65,7 +66,7 @@ public class MainMenuManager implements Listener {
         Bukkit.getScheduler().runTaskAsynchronously(Core.getPlugin(), new Runnable() {
             @Override
             public void run() {
-                if (!player.hasPermission("ultracosmetics.openmenu")) {
+                if (!CustomPlayer.hasPermission(player, "ultracosmetics.openmenu")) {
                     player.sendMessage(MessageManager.getMessage("No-Permission"));
                     player.closeInventory();
                     return;

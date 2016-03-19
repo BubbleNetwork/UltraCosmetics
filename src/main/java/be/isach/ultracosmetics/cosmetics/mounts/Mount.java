@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.cosmetics.mounts;
 
 import be.isach.ultracosmetics.Core;
+import be.isach.ultracosmetics.CustomPlayer;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.mounts.customentities.CustomSlime;
 import be.isach.ultracosmetics.cosmetics.mounts.customentities.FlyingSquid;
@@ -78,7 +79,9 @@ public abstract class Mount implements Listener {
         this.type = type;
         if (owner != null) {
             this.owner = owner;
-            if (!getPlayer().hasPermission(type.getPermission())) {
+            //BubbleNetwork start
+            if (!CustomPlayer.hasPermission(getPlayer(),type.getPermission())) {
+                //BubbleNetwork end
                 getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
                 return;
             }

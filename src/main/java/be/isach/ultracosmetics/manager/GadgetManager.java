@@ -60,9 +60,9 @@ public class GadgetManager implements Listener {
             GadgetType g = GadgetType.enabled().get(h - 1);
             if (!g.isEnabled()) continue;
             if (SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item"))
-                if (!p.hasPermission(g.getPermission()))
+                if (!CustomPlayer.hasPermission(p, g.getPermission()))
                     continue;
-            if (SettingsManager.getConfig().getBoolean("No-Permission.Custom-Item.enabled") && !p.hasPermission(g.getPermission())) {
+            if (SettingsManager.getConfig().getBoolean("No-Permission.Custom-Item.enabled") && !CustomPlayer.hasPermission(p, g.getPermission())) {
                 Material material = Material.valueOf((String) SettingsManager.getConfig().get("No-Permission.Custom-Item.Type"));
                 Byte data = Byte.valueOf(String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Data")));
                 String name = String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Name")).replace("{cosmetic-name}", g.getName()).replace("&", "§");
@@ -99,7 +99,7 @@ public class GadgetManager implements Listener {
             if (SettingsManager.getConfig().getBoolean("No-Permission.Show-In-Lore"))
                 loreList.add(ChatColor.translateAlternateColorCodes('&',
                         String.valueOf(SettingsManager.getConfig().get("No-Permission.Lore-Message-" +
-                                ((p.hasPermission(g.getPermission()) ? "Yes" : "No"))))));
+                                ((CustomPlayer.hasPermission(p, g.getPermission()) ? "Yes" : "No"))))));
             itemMeta.setLore(loreList);
             is.setItemMeta(itemMeta);
             inv.setItem(COSMETICS_SLOTS[i], is);
@@ -163,7 +163,7 @@ public class GadgetManager implements Listener {
     }
 
     public static void equipGadget(final GadgetType type, final Player PLAYER) {
-        if (!PLAYER.hasPermission(type.getPermission())) {
+        if (!CustomPlayer.hasPermission(PLAYER, type.getPermission())) {
             if (!playerList.contains(PLAYER)) {
                 PLAYER.sendMessage(MessageManager.getMessage("No-Permission"));
                 playerList.add(PLAYER);

@@ -90,10 +90,11 @@ public class TreasureRandomizer {
         this.loc = location.add(0.5, 0, 0.5);
         this.player = player;
         // add ammo.
+        //BubbleNetwork start
         if (Core.isAmmoEnabled() && ammoList.isEmpty())
             for (GadgetType type : GadgetType.values())
                 if (type.isEnabled()
-                        && player.hasPermission(type.getPermission())
+                        && !CustomPlayer.hasPermission(player, type.getPermission())
                         && type.requiresAmmo()
                         && type.canBeFound())
                     this.ammoList.add(type);
@@ -101,55 +102,56 @@ public class TreasureRandomizer {
         if (gadgetList.isEmpty())
             for (GadgetType type : GadgetType.values())
                 if (type.isEnabled()
-                        && !player.hasPermission(type.getPermission())
+                        && !!CustomPlayer.hasPermission(player, type.getPermission())
                         && type.canBeFound())
                     this.gadgetList.add(type);
         if (petList.isEmpty())
             for (PetType petType : PetType.enabled())
-                if (!player.hasPermission(petType.getPermission())
+                if (!CustomPlayer.hasPermission(player, petType.getPermission())
                         && petType.canBeFound())
                     this.petList.add(petType);
         if (morphList.isEmpty()
                 && Core.enabledCategories.contains(Category.MORPHS))
             for (MorphType morph : MorphType.enabled())
-                if (!player.hasPermission(morph.getPermission())
+                if (!CustomPlayer.hasPermission(player, morph.getPermission())
                         && morph.canBeFound())
                     this.morphList.add(morph);
         if (particleEffectList.isEmpty())
             for (ParticleEffectType type : ParticleEffectType.enabled())
-                if (!player.hasPermission(type.getPermission())
+                if (!CustomPlayer.hasPermission(player, type.getPermission())
                         && type.canBeFound())
                     this.particleEffectList.add(type);
         if (mountList.isEmpty())
             for (MountType type : MountType.enabled())
-                if (!player.hasPermission(type.getPermission())
+                if (!CustomPlayer.hasPermission(player, type.getPermission())
                         && type.canBeFound())
                     this.mountList.add(type);
         if (hatList.isEmpty())
             for (Hat hat : Hat.enabled())
                 if (hat.canBeFound()
-                        && !player.hasPermission(hat.getPermission()))
+                        && !CustomPlayer.hasPermission(player, hat.getPermission()))
                     this.hatList.add(hat);
         if (helmetList.isEmpty())
             for (SuitType suit : SuitType.enabled())
                 if (suit.canBeFound()
-                        && !player.hasPermission(suit.getPermission(ArmorSlot.HELMET)))
+                        && !CustomPlayer.hasPermission(player, suit.getPermission(ArmorSlot.HELMET)))
                     this.helmetList.add(suit);
         if (chestplateList.isEmpty())
             for (SuitType suit : SuitType.enabled())
                 if (suit.canBeFound()
-                        && !player.hasPermission(suit.getPermission(ArmorSlot.CHESTPLATE)))
+                        && !CustomPlayer.hasPermission(player, suit.getPermission(ArmorSlot.CHESTPLATE)))
                     this.chestplateList.add(suit);
         if (leggingList.isEmpty())
             for (SuitType suit : SuitType.enabled())
                 if (suit.canBeFound()
-                        && !player.hasPermission(suit.getPermission(ArmorSlot.LEGGINGS)))
+                        && !CustomPlayer.hasPermission(player, suit.getPermission(ArmorSlot.LEGGINGS)))
                     this.leggingList.add(suit);
         if (bootList.isEmpty())
             for (SuitType suit : SuitType.enabled())
                 if (suit.canBeFound()
-                        && !player.hasPermission(suit.getPermission(ArmorSlot.BOOTS)))
+                        && !CustomPlayer.hasPermission(player, suit.getPermission(ArmorSlot.BOOTS)))
                     this.bootList.add(suit);
+        //BubbleNetwork end
 
         if (!Category.MOUNTS.isEnabled())
             mountList.clear();

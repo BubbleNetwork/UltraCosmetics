@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.cosmetics.pets;
 
 import be.isach.ultracosmetics.Core;
+import be.isach.ultracosmetics.CustomPlayer;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.pets.customentities.Pumpling;
@@ -97,7 +98,7 @@ public abstract class Pet implements Listener {
         if (owner == null) return;
 
         this.owner = owner;
-        if (!getPlayer().hasPermission(getType().getPermission())) {
+        if (!CustomPlayer.hasPermission(getPlayer(), getType().getPermission())) {
             getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
             return;
         }

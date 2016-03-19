@@ -32,7 +32,7 @@ public class PlayerListener implements Listener {
             public void run() {
                 Core.getPlayerManager().create(event.getPlayer());
 
-                if ((boolean) SettingsManager.getConfig().get("Menu-Item.Give-On-Join") && event.getPlayer().hasPermission("ultracosmetics.receivechest") && ((List<String>) SettingsManager.getConfig().get("Enabled-Worlds")).contains(event.getPlayer().getWorld().getName())) {
+                if ((boolean) SettingsManager.getConfig().get("Menu-Item.Give-On-Join") && CustomPlayer.hasPermission(event.getPlayer(), "ultracosmetics.receivechest") && ((List<String>) SettingsManager.getConfig().get("Enabled-Worlds")).contains(event.getPlayer().getWorld().getName())) {
                     Bukkit.getScheduler().runTaskLater(Core.getPlugin(), new Runnable() {
                         @Override
                         public void run() {
@@ -54,7 +54,7 @@ public class PlayerListener implements Listener {
         Bukkit.getScheduler().runTaskAsynchronously(Core.getPlugin(), new Runnable() {
             @Override
             public void run() {
-                if ((boolean) SettingsManager.getConfig().get("Menu-Item.Give-On-Join") && event.getPlayer().hasPermission("ultracosmetics.receivechest") && ((List<String>) SettingsManager.getConfig().get("Enabled-Worlds")).contains(event.getPlayer().getWorld().getName())) {
+                if ((boolean) SettingsManager.getConfig().get("Menu-Item.Give-On-Join") && CustomPlayer.hasPermission(event.getPlayer(), "ultracosmetics.receivechest") && ((List<String>) SettingsManager.getConfig().get("Enabled-Worlds")).contains(event.getPlayer().getWorld().getName())) {
                     Bukkit.getScheduler().runTaskLater(Core.getPlugin(), new Runnable() {
                         @Override
                         public void run() {

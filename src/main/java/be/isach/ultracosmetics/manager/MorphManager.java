@@ -80,9 +80,9 @@ public class MorphManager implements Listener {
                     if (!morphType.isEnabled()) continue;
 
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item"))
-                        if (!p.hasPermission(morphType.getPermission()))
+                        if (!CustomPlayer.hasPermission(p, morphType.getPermission()))
                             continue;
-                    if (SettingsManager.getConfig().getBoolean("No-Permission.Custom-Item.enabled") && !p.hasPermission(morphType.getPermission())) {
+                    if (SettingsManager.getConfig().getBoolean("No-Permission.Custom-Item.enabled") && !CustomPlayer.hasPermission(p, morphType.getPermission())) {
                         Material material = Material.valueOf((String) SettingsManager.getConfig().get("No-Permission.Custom-Item.Type"));
                         Byte data = Byte.valueOf(String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Data")));
                         String name = String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Name")).replace("&", "§").replace("{cosmetic-name}", morphType.getName()).replace("&", "§");
@@ -95,7 +95,7 @@ public class MorphManager implements Listener {
                     }
                     String lore = null;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Show-In-Lore"))
-                        lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig().get("No-Permission.Lore-Message-" + ((p.hasPermission(morphType.getPermission()) ? "Yes" : "No")))));
+                        lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig().get("No-Permission.Lore-Message-" + ((CustomPlayer.hasPermission(p, morphType.getPermission()) ? "Yes" : "No")))));
                     String toggle = MessageManager.getMessage("Menu.Morph");
                     CustomPlayer cp = Core.getCustomPlayer(p);
                     if (cp.currentMorph != null && cp.currentMorph.getType() == morphType)
@@ -152,7 +152,7 @@ public class MorphManager implements Listener {
     }
 
     public static void equipMorph(final MorphType TYPE, final Player PLAYER) {
-        if (!PLAYER.hasPermission(TYPE.getPermission())) {
+        if (!CustomPlayer.hasPermission(PLAYER, TYPE.getPermission())) {
             if (!playerList.contains(PLAYER)) {
                 PLAYER.sendMessage(MessageManager.getMessage("No-Permission"));
                 playerList.add(PLAYER);

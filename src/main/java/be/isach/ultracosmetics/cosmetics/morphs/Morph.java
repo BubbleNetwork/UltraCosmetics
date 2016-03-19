@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.cosmetics.morphs;
 
 import be.isach.ultracosmetics.Core;
+import be.isach.ultracosmetics.CustomPlayer;
 import be.isach.ultracosmetics.config.MessageManager;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
@@ -43,7 +44,9 @@ public abstract class Morph implements Listener {
         if (Core.getCustomPlayer(getPlayer()).currentMorph != null)
             Core.getCustomPlayer(getPlayer()).removeMorph();
 
-        if (!getPlayer().hasPermission(getType().getPermission())) {
+        //BubbleNetwork start
+        if (!CustomPlayer.hasPermission(getPlayer(),getType().getPermission())) {
+            //BubbleNetwork end
             getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
             return;
         }

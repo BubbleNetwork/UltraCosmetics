@@ -102,7 +102,9 @@ public abstract class Gadget implements Listener {
             this.owner = owner;
             if (Core.getCustomPlayer(getPlayer()).currentGadget != null)
                 Core.getCustomPlayer(getPlayer()).removeGadget();
-            if (!getPlayer().hasPermission(permission)) {
+            //BubbleNetwork start
+            if (!CustomPlayer.hasPermission(getPlayer(),permission)) {
+                //BubbleNetwork end
                 getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
                 return;
             }

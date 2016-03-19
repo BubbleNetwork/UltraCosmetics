@@ -72,9 +72,9 @@ public class PetManager implements Listener {
                     PetType pet = PetType.enabled().get(h - 1);
                     if (!pet.isEnabled()) continue;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item"))
-                        if (!p.hasPermission(pet.getPermission()))
+                        if (!CustomPlayer.hasPermission(p, pet.getPermission()))
                             continue;
-                    if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !p.hasPermission(pet.getPermission())) {
+                    if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !CustomPlayer.hasPermission(p, pet.getPermission())) {
                         Material material = Material.valueOf((String) SettingsManager.getConfig().get("No-Permission.Custom-Item.Type"));
                         Byte data = Byte.valueOf(String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Data")));
                         String name = String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Name")).replace("&", "§").replace("{cosmetic-name}", pet.getMenuName()).replace("&", "§");
@@ -88,7 +88,7 @@ public class PetManager implements Listener {
                     String lore = null;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Show-In-Lore")) {
                         lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig()
-                                .get("No-Permission.Lore-Message-" + ((p.hasPermission(pet.getPermission()) ? "Yes" : "No")))));
+                                .get("No-Permission.Lore-Message-" + ((CustomPlayer.hasPermission(p, pet.getPermission()) ? "Yes" : "No")))));
                     }
                     String toggle = MessageManager.getMessage("Menu.Spawn");
                     CustomPlayer cp = Core.getCustomPlayer(p);
@@ -126,7 +126,7 @@ public class PetManager implements Listener {
                 int d = (Category.PETS.hasGoBackArrow() ? 5 : 6);
                 if (SettingsManager.getConfig().getBoolean("Pets-Rename.Enabled")) {
                     if (SettingsManager.getConfig().getBoolean("Pets-Rename.Permission-Required")) {
-                        if (p.hasPermission("ultracosmetics.pets.rename"))
+                        if (CustomPlayer.hasPermission(p, "ultracosmetics.pets.rename"))
                             if (Core.getCustomPlayer(p).currentPet != null)
                                 inv.setItem(inv.getSize() - d, ItemFactory.create(ItemFactory.createFromConfig("Categories.Rename-Pet-Item").getItemType(), ItemFactory.createFromConfig("Categories.Rename-Pet-Item").getData(), MessageManager.getMessage("Rename-Pet")
                                         .replace("%petname%", Core.getCustomPlayer(p).currentPet.getType().getMenuName())));
@@ -182,7 +182,7 @@ public class PetManager implements Listener {
     }
 
     public static void equipPet(final PetType type, final Player player) {
-        if (!player.hasPermission(type.getPermission())) {
+        if (!CustomPlayer.hasPermission(player, type.getPermission())) {
             if (!noSpamList.contains(player)) {
                 player.sendMessage(MessageManager.getMessage("No-Permission"));
                 noSpamList.add(player);

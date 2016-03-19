@@ -62,11 +62,11 @@ public class SuitManager implements Listener {
                     for (int d = 0; d < ArmorSlot.values().length; d++) {
                         ArmorSlot armorSlot = ArmorSlot.values()[d];
                         if (SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item"))
-                            if (!p.hasPermission(suit.getPermission(armorSlot))) {
+                            if (!CustomPlayer.hasPermission(p, suit.getPermission(armorSlot))) {
                                 shouldIncrement = false;
                                 continue;
                             }
-                        if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !p.hasPermission(suit.getPermission(armorSlot))) {
+                        if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !CustomPlayer.hasPermission(p, suit.getPermission(armorSlot))) {
                             Material material = Material.valueOf((String) SettingsManager.getConfig().get("No-Permission.Custom-Item.Type"));
                             Byte data = Byte.valueOf(String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Data")));
                             String name = String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Name")).replace("&", "§").replace("{cosmetic-name}", suit.getName(armorSlot)).replace("&", "§");
@@ -80,7 +80,7 @@ public class SuitManager implements Listener {
                         String lore = null;
                         if (SettingsManager.getConfig().getBoolean("No-Permission.Show-In-Lore"))
                             lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig()
-                                    .get("No-Permission.Lore-Message-" + ((p.hasPermission(suit.getPermission(armorSlot)) ? "Yes" : "No")))));
+                                    .get("No-Permission.Lore-Message-" + ((CustomPlayer.hasPermission(p, suit.getPermission(armorSlot)) ? "Yes" : "No")))));
                         String toggle = MessageManager.getMessage("Menu.Equip");
                         CustomPlayer cp = Core.getCustomPlayer(p);
                         Suit current = null;
@@ -187,7 +187,7 @@ public class SuitManager implements Listener {
     }
 
     public static void equipSuit(final SuitType type, final Player player, final ArmorSlot armorSlot) {
-        if (!player.hasPermission(type.getPermission(armorSlot))) {
+        if (!CustomPlayer.hasPermission(player, type.getPermission(armorSlot))) {
             if (!noSpamList.contains(player)) {
                 player.sendMessage(MessageManager.getMessage("No-Permission"));
                 noSpamList.add(player);

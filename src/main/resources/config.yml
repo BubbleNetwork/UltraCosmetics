@@ -14,7 +14,7 @@ Categories-Enabled:
 # - Do you want a BackToMainMenu Arrow in it?
 Categories:
   Gadgets:
-    Main-Menu-Item: '409:0'
+    Main-Menu-Item: '419'
     Go-Back-Arrow: true
     # You wanna show the cooldown of current gadget in actionbar?
     Cooldown-In-ActionBar: true
@@ -25,16 +25,16 @@ Categories:
     Main-Menu-Item: '329:0'
     Go-Back-Arrow: true
   Pets:
-    Main-Menu-Item: '352:0'
+    Main-Menu-Item: '420:0'
     Go-Back-Arrow: true
   Morphs:
     Main-Menu-Item: '334:0'
     Go-Back-Arrow: true
   Hats:
-    Main-Menu-Item: '314:0'
+    Main-Menu-Item: '397:4'
     Go-Back-Arrow: true
   Suits:
-    Main-Menu-Item: '299:0'
+    Main-Menu-Item: '303'
     Go-Back-Arrow: true
   Clear-Cosmetic-Item: '152:0'
   # Previous Page Item
@@ -50,9 +50,9 @@ Categories:
     When-Disabled: '368:0'
   Gadgets-Item:
     # Item in Gadgets Menu when Gadgets enabled.
-    When-Enabled: '351:10'
+    When-Enabled: '419'
     # Item in Gadgets Menu when Gadgets disabled.
-    When-Disabled: '351:8'
+    When-Disabled: '35:14'
   # Item in Pets Menu to rename current pet.
   Rename-Pet-Item: '421:0'
   # Should GUI close after selecting a cosmetic?
@@ -92,87 +92,71 @@ TreasureChests:
   Loots:
     Money:
       Enabled: true
-      Max: 100
+      Max: 200
       Chance: 10
       Message:
         enabled: false
-        message: '%prefix% &6&l%name% found %money%$'
+        message: '%prefix% &9&l%name%&r found %money%$'
     Gadgets-Ammo:
-      Enabled: true
+      Enabled: false
       Min: 20
       Max: 100
       Chance: 60
       Message:
         enabled: false
-        message: '%prefix% &6&l%name% found %ammo% %gadget% ammo'
+        message: '%prefix% &9&l%name%&r found %ammo% %gadget% ammo'
     Gadgets:
+      Enabled: true
+      Chance: 30
+      Message:
+        enabled: false
+        message: '%prefix% &9&l%name%&r found gadget %gadget%'
+    Mounts:
+      Enabled: true
+      Chance: 2
+      Message:
+        enabled: true
+        message: '%prefix% &9&l%name%&r found rare %mount%'
+    Pets:
+      Enabled: true
+      Chance: 2
+      Message:
+        enabled: true
+        message: '%prefix% &9&l%name%&r found rare %pet%'
+    Morphs:
+      Enabled: false
+      Chance: 4
+      Message:
+        enabled: false
+        message: '%prefix% &9&l%name%&r found legendary %morph%'
+    Effects:
+      Enabled: true
+      Chance: 10
+      Message:
+        enabled: false
+        message: '%prefix% &9&l%name%&r found legendary %effect%'
+    Hats:
       Enabled: true
       Chance: 20
       Message:
         enabled: false
-        message: '%prefix% &6&l%name% found gadget %gadget%'
-    Mounts:
-      Enabled: true
-      Chance: 10
-      Message:
-        enabled: false
-        message: '%prefix% &6&l%name% found rare %mount%'
-    Pets:
-      Enabled: true
-      Chance: 10
-      Message:
-        enabled: false
-        message: '%prefix% &6&l%name% found rare %pet%'
-    Morphs:
-      Enabled: true
-      Chance: 4
-      Message:
-        enabled: true
-        message: '%prefix% &6&l%name% found legendary %morph%'
-    Effects:
-      Enabled: true
-      Chance: 4
-      Message:
-        enabled: true
-        message: '%prefix% &6&l%name% found legendary %effect%'
-    Hats:
-      Enabled: true
-      Chance: 10
-      Message:
-        enabled: false
-        message: '%prefix% &6&l%name% found rare %hat%'
+        message: '%prefix% &9&l%name%&r found rare %hat%'
     Suits:
       Enabled: true
-      Chance: 10
+      Chance: 20
       Message:
         enabled: false
-        message: '%prefix% &6&l%name% found rare %suit%'
+        message: '%prefix% &9&l%name%&r found rare %suit%'
   Designs:
     Classic:
       center-block: '169:0'
-      around-center: '5:0'
-      third-blocks: '5:1'
-      below-chests: '17:0'
-      barriers: '85:0'
-      chest-type: NORMAL
-      effect: FLAME
-    Modern:
-      center-block: '169:0'
-      around-center: '159:11'
-      third-blocks: '155:0'
-      below-chests: '159:11'
-      barriers: '160:3'
+      around-center: '35:3'
+      third-blocks: '22:0'
+      below-chests: '57:0'
+      barriers: '139:0'
       chest-type: ENDER
-      effect: REDSTONE
-    Nether:
-      center-block: '89:0'
-      around-center: '88:0'
-      third-blocks: '87:0'
-      below-chests: '112:0'
-      barriers: '113:0'
-      chest-type: NORMAL
       effect: SMOKE_NORMAL
-  Permission-Add-Command: pex user %name% add %permission%
+  Permission-Add-Command: givegadget %name% %permission%
 # This option will fill the blank slots of inventories
 # with a custom item!
 Fill-Blank-Slots-With-Item:
@@ -189,7 +173,7 @@ Fill-Blank-Slots-With-Item:
 # If true, money will be required
 # to rename a pet.
 Pets-Rename:
-  Enabled: false
+  Enabled: true
   Permission-Required: false
   Requires-Money:
     Enabled: true
@@ -225,23 +209,23 @@ Ammo-System-For-Gadgets:
 Menu-Item:
   Give-On-Join: true
   Give-On-Respawn: true
-  Slot: 3
-  Type: ENDER_CHEST
+  Slot: 8
+  Type: BLAZE_POWDER
   Data: 0
-  Displayname: '&6&lCosmetics'
+  Displayname: '&bCosmetics'
 # Settings related to permissions.
 # 
 # List for "Type" https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 No-Permission:
   Show-In-Lore: true
-  Lore-Message-Yes: '&o&7Permission: &a&lYes!'
-  Lore-Message-No: '&o&7Permission: &4&lNo!'
+  Lore-Message-Yes: '&7You have permission for this!'
+  Lore-Message-No: '&cYou need to donate for this &7store.thebubblenetwork.com'
   Dont-Show-Item: false
   Custom-Item:
     enabled: false
     Type: INK_SACK
     Data: 8
-    Name: '&c&l{cosmetic-name}'
+    Name: '&7{cosmetic-name}'
     Lore:
     - ''
     - '&c&lYou do not have permission for this!'

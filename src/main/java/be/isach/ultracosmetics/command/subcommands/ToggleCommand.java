@@ -36,8 +36,10 @@ public class ToggleCommand extends SubCommand {
         Player receiver = sender;
 
         if (type.startsWith("s")) {
+            //BubbleNetwork start
             if (args.length > 4
-                    && sender.hasPermission(getPermission() + ".others")) {
+                    && CustomPlayer.hasPermission(sender,getPermission() + ".others")) {
+                //BubbleNetwork end
                 receiver = Bukkit.getPlayer(args[4]);
                 if (receiver == null) {
                     sender.sendMessage("  §c§lPlayer " + args[4] + " not found!");
@@ -45,8 +47,10 @@ public class ToggleCommand extends SubCommand {
                 }
             }
         } else {
+            //BubbleNetwork start
             if (args.length > 3
-                    && sender.hasPermission(getPermission() + ".others")) {
+                    && CustomPlayer.hasPermission(sender,getPermission() + ".others")) {
+                //BubbleNetwork end
                 receiver = Bukkit.getPlayer(args[3]);
                 if (receiver == null) {
                     sender.sendMessage("  §c§lPlayer " + args[3] + " not found!");

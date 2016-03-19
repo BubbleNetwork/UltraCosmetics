@@ -22,6 +22,7 @@ import me.libraryaddict.disguise.DisguiseAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -36,6 +37,15 @@ import java.util.UUID;
  * Created by sacha on 03/08/15.
  */
 public class CustomPlayer {
+    //BubbleNetwork start
+    public static boolean hasPermission(CommandSender sender, String permission){
+        if(sender instanceof Player){
+            BukkitBubblePlayer player = BukkitBubblePlayer.getObject(((Player) sender).getUniqueId());
+            return player != null && player.isAuthorized(permission);
+        }
+        return true;
+    }
+    //BubbleNetwork end
 
     /**
      * Player UUID.
@@ -65,7 +75,7 @@ public class CustomPlayer {
     /**
      * Cooldown map storing all the current cooldowns for gadgets.
      */
-    private HashMap<GadgetType, Long> gadgetCooldowns = null;
+    private HashMap<GadgetType, Long> gadgetCooldowns = new HashMap<>();
     /**
      * Cache boolean  for SQL to minimize SQL query
      * <p/>
@@ -131,6 +141,12 @@ public class CustomPlayer {
         isLoaded = true;
         //BubbleNetwork end
     }
+
+    //BubbleNetwork start
+    public boolean hasPermission(String permission){
+        return getBukkitBubblePlayer().isAuthorized(permission);
+    }
+    //BubbleNetwork end
 
     /**
      * Checks if a player can use a given gadget type.
@@ -497,9 +513,8 @@ public class CustomPlayer {
             else
                 Core.sqlUtils.addAmmo(getPlayer().getUniqueId(), name, amount);
                 */
-        Map<String,Integer> hubitems = getBukkitBubblePlayer().getHubItems();
-        int amt = hubitems.containsKey(name) ? hubitems.get(name) + amount : amount;
-        getBukkitBubblePlayer().setHubItem(name,amt);
+        int amt = getBukkitBubblePlayer().getHubItem(name);
+        getBukkitBubblePlayer().setHubItem(name,amt + amount);
         //BubbleNetwork finish
         if (currentGadget != null)
             getPlayer().getInventory().setItem((int) SettingsManager.getConfig().get("Gadget-Slot"),
@@ -652,11 +667,7 @@ public class CustomPlayer {
      */
     //BubbleNetwork start
     public int getAmmo(String name) {
-        Map<String,Integer> items = bukkitBubblePlayer.getHubItems();
-        if(items.containsKey(name)){
-            return items.get(name);
-        }
-        return 0;
+        return getBukkitBubblePlayer().getHubItem(name);
         /*
         if (Core.isAmmoEnabled())
             if (Core.usingFileStorage())

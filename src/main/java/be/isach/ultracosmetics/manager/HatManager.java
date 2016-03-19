@@ -65,9 +65,9 @@ public class HatManager implements Listener {
                     Hat hat = Hat.enabled().get(h - 1);
                     if (!hat.isEnabled()) continue;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item"))
-                        if (!p.hasPermission(hat.getPermission()))
+                        if (!CustomPlayer.hasPermission(p,hat.getPermission()))
                             continue;
-                    if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !p.hasPermission(hat.getPermission())) {
+                    if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !CustomPlayer.hasPermission(p, hat.getPermission())) {
                         Material material = Material.valueOf((String) SettingsManager.getConfig().get("No-Permission.Custom-Item.Type"));
                         Byte data = Byte.valueOf(String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Data")));
                         String name = String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Name")).replace("{cosmetic-name}", hat.getName()).replace("&", "§");
@@ -80,7 +80,7 @@ public class HatManager implements Listener {
                     }
                     String lore = null;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Show-In-Lore"))
-                        lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig().get("No-Permission.Lore-Message-" + ((p.hasPermission(hat.getPermission()) ? "Yes" : "No")))));
+                        lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig().get("No-Permission.Lore-Message-" + ((CustomPlayer.hasPermission(p, hat.getPermission()) ? "Yes" : "No")))));
                     String toggle = MessageManager.getMessage("Menu.Equip");
                     CustomPlayer cp = Core.getCustomPlayer(p);
                     if (cp.currentHat != null && cp.currentHat == hat)
@@ -142,7 +142,7 @@ public class HatManager implements Listener {
     }
 
     public static void equipHat(Hat hat, final Player PLAYER) {
-        if (!PLAYER.hasPermission(hat.getPermission())) {
+        if (!CustomPlayer.hasPermission(PLAYER, hat.getPermission())) {
             if (!playerList.contains(PLAYER)) {
                 PLAYER.sendMessage(MessageManager.getMessage("No-Permission"));
                 playerList.add(PLAYER);

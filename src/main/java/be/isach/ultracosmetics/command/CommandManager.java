@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.command;
 
 import be.isach.ultracosmetics.Core;
+import be.isach.ultracosmetics.CustomPlayer;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.util.MathUtils;
 import org.bukkit.command.Command;
@@ -88,7 +89,9 @@ public class CommandManager implements CommandExecutor {
         for (SubCommand meCommand : commands)
             if (meCommand.is(arguments[0])) {
 
-                if (!sender.hasPermission(meCommand.getPermission())) {
+                //BubbleNetwork start
+                if (!CustomPlayer.hasPermission(sender, meCommand.getPermission())) {
+                    //BubbleNetwork end
                     sender.sendMessage(MessageManager.getMessage("No-Permission"));
                     return true;
                 }

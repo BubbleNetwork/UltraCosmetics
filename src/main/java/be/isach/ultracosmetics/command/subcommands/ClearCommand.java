@@ -32,7 +32,9 @@ public class ClearCommand extends SubCommand {
         if (args.length < 2) {
             sender.sendMessage("§c§l  Incorrect Usage. " + getUsage());
         } else {
-            if (sender.hasPermission(getPermission() + ".others")) {
+            //BubbleNetwork start
+            if (CustomPlayer.hasPermission(sender,getPermission() + ".others")) {
+                //BubbleNetwork end
                 receiver = Bukkit.getPlayer(args[1]);
                 if (receiver == null) {
                     sender.sendMessage("  §c§lPlayer " + args[1] + " not found!");

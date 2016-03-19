@@ -62,9 +62,9 @@ public class ParticleEffectManager implements Listener {
                     ParticleEffectType particleEffectType = ParticleEffectType.enabled().get(h - 1);
                     if (!particleEffectType.isEnabled()) continue;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item"))
-                        if (!p.hasPermission(particleEffectType.getPermission()))
+                        if (!CustomPlayer.hasPermission(p, particleEffectType.getPermission()))
                             continue;
-                    if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !p.hasPermission(particleEffectType.getPermission())) {
+                    if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !CustomPlayer.hasPermission(p, particleEffectType.getPermission())) {
                         Material material = Material.valueOf((String) SettingsManager.getConfig().get("No-Permission.Custom-Item.Type"));
                         Byte data = Byte.valueOf(String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Data")));
                         String name = String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Name")).replace("&", "§").replace("{cosmetic-name}", particleEffectType.getName()).replace("&", "§");
@@ -78,7 +78,7 @@ public class ParticleEffectManager implements Listener {
                     String lore = null;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Show-In-Lore"))
                         lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig()
-                                .get("No-Permission.Lore-Message-" + ((p.hasPermission(particleEffectType.getPermission()) ? "Yes" : "No")))));
+                                .get("No-Permission.Lore-Message-" + ((CustomPlayer.hasPermission(p, particleEffectType.getPermission()) ? "Yes" : "No")))));
                     String toggle = MessageManager.getMessage("Menu.Summon");
                     CustomPlayer cp = Core.getCustomPlayer(p);
                     if (cp.currentParticleEffect != null && cp.currentParticleEffect.getType() == particleEffectType)
@@ -149,7 +149,7 @@ public class ParticleEffectManager implements Listener {
     }
 
     public static void equipEffect(final ParticleEffectType TYPE, final Player PLAYER) {
-        if (!PLAYER.hasPermission(TYPE.getPermission())) {
+        if (!CustomPlayer.hasPermission(PLAYER, TYPE.getPermission())) {
             if (!playerList.contains(PLAYER)) {
                 PLAYER.sendMessage(MessageManager.getMessage("No-Permission"));
                 playerList.add(PLAYER);

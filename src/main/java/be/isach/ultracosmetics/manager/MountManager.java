@@ -62,9 +62,9 @@ public class MountManager implements Listener {
                     MountType mountType = MountType.enabled().get(h - 1);
                     if (!mountType.isEnabled()) continue;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item"))
-                        if (!p.hasPermission(mountType.getPermission()))
+                        if (!CustomPlayer.hasPermission(p, mountType.getPermission()))
                             continue;
-                    if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !p.hasPermission(mountType.getPermission())) {
+                    if ((boolean) SettingsManager.getConfig().get("No-Permission.Custom-Item.enabled") && !CustomPlayer.hasPermission(p, mountType.getPermission())) {
                         Material material = Material.valueOf((String) SettingsManager.getConfig().get("No-Permission.Custom-Item.Type"));
                         Byte data = Byte.valueOf(String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Data")));
                         String name = String.valueOf(SettingsManager.getConfig().get("No-Permission.Custom-Item.Name")).replace("{cosmetic-name}", mountType.getMenuName()).replace("&", "§");
@@ -77,7 +77,7 @@ public class MountManager implements Listener {
                     }
                     String lore = null;
                     if (SettingsManager.getConfig().getBoolean("No-Permission.Show-In-Lore"))
-                        lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig().get("No-Permission.Lore-Message-" + ((p.hasPermission(mountType.getPermission()) ? "Yes" : "No")))));
+                        lore = ChatColor.translateAlternateColorCodes('&', String.valueOf(SettingsManager.getConfig().get("No-Permission.Lore-Message-" + ((CustomPlayer.hasPermission(p,mountType.getPermission()) ? "Yes" : "No")))));
                     String toggle = MessageManager.getMessage("Menu.Spawn");
                     CustomPlayer cp = Core.getCustomPlayer(p);
                     if (cp.currentMount != null && cp.currentMount.getType() == mountType)
@@ -148,7 +148,7 @@ public class MountManager implements Listener {
     }
 
     public static void equipMount(final MountType TYPE, final Player PLAYER) {
-        if (!PLAYER.hasPermission(TYPE.getPermission())) {
+        if (!CustomPlayer.hasPermission(PLAYER, TYPE.getPermission())) {
             if (!playerList.contains(PLAYER)) {
                 PLAYER.sendMessage(MessageManager.getMessage("No-Permission"));
                 playerList.add(PLAYER);

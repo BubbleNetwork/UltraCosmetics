@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.cosmetics.particleeffects;
 
 import be.isach.ultracosmetics.Core;
+import be.isach.ultracosmetics.CustomPlayer;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.util.MathUtils;
 import be.isach.ultracosmetics.util.Particles;
@@ -52,7 +53,9 @@ public abstract class ParticleEffect implements Listener {
             return;
         if (owner != null) {
             this.owner = owner;
-            if (!getPlayer().hasPermission(type.getPermission())) {
+            //BubbleNetwork start
+            if (!CustomPlayer.hasPermission(getPlayer(), type.getPermission())) {
+                //BubbleNetwork end
                 getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
                 return;
             }

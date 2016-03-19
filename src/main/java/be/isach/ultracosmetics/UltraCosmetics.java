@@ -643,8 +643,8 @@ public class UltraCosmetics extends JavaPlugin{
             log("");
         }
         */
-        vaultLoaded = true;
-        Core.vaultLoaded = true;
+        vaultLoaded = false;
+        Core.vaultLoaded = vaultLoaded;
         Core.placeHolderColor = placeHolderColor;
         Core.commandManager = commandManager;
         //BubbleNetwork end
