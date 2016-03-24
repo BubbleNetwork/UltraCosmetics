@@ -1,5 +1,5 @@
 # If set to true, will check for updates
-Check-For-Updates: true
+Check-For-Updates: false
 # List of the enabled categories.
 Categories-Enabled:
   Gadgets: true
@@ -177,7 +177,7 @@ Pets-Rename:
   Permission-Required: false
   Requires-Money:
     Enabled: true
-    Price: 100
+    Price: 1000
 # Do pets drop items? (not pickable up by players)
 Pets-Drop-Items: true
 # Are pets babies?
@@ -209,7 +209,7 @@ Ammo-System-For-Gadgets:
 Menu-Item:
   Give-On-Join: true
   Give-On-Respawn: true
-  Slot: 8
+  Slot: 7
   Type: BLAZE_POWDER
   Data: 0
   Displayname: '&bCosmetics'
