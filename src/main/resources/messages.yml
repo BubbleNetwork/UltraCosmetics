@@ -25,9 +25,9 @@ Click-Buy-Key: "&7Click to buy a key"
 Your-Keys: "&7Your keys: &9%keys%"
 Buy-Treasure-Key-ItemName: '&e&l1 &7&lTreasure Key &e&lfor %price%$'
 Found-Legendary: '%prefix% &9%name% &7found Legendary &9%found%'
-Chest-Not-Enough-Space: '%prefix% &c&lThere isn''t enough space for a treasure chest!'
-Too-Close-To-Other-Chest: '%prefix% &c&lYou are too close to another treasure chest!'
-You-Won-Treasure-Chests: '%prefix% &f&lYou won: %name%!'
+Chest-Not-Enough-Space: '%prefix% There isn''t enough space for a treasure chest!'
+Too-Close-To-Other-Chest: '%prefix% You are too close to another treasure chest!'
+You-Won-Treasure-Chests: '%prefix% You won: %name%!'
 Clear-Cosmetics: "&b&lClear cosmetics"
 Clear-Gadget: "&b&lClear current gadget"
 Clear-Pet: "&b&lClear current pet"
@@ -67,8 +67,8 @@ Disable-Third-Person-View: '&cDisable Morphs Third Person View'
 Enable-Third-Person-View: '&bEnable Morphs Third Person View'
 Gadgets-Enabled-Needed: '%prefix% You need to enable gadgets!'
 Gadgets:
-  Equip: '%prefix% &9You equipped %gadgetname%'
-  Unequip: '%prefix% &9You unequipped %gadgetname%'
+  Equip: '%prefix% You equipped &9%gadgetname%'
+  Unequip: '%prefix% You unequipped &9%gadgetname%'
   Countdown-Message: '%prefix% You can''t use &9%gadgetname%&r for &7%time%s&r'
   PaintballGun:
     name: '&9Paintball Gun'
@@ -297,8 +297,8 @@ Morphs:
     name: '&9Elder Guardian'
     skill: "&eLeft-Click\xa77 to: &aLaser"
 Hats:
-  Equip: '%prefix% &9You equipped %hatname% &9hat!'
-  Unequip: '%prefix% &9You unequipped %hatname% &9hat!'
+  Equip: '%prefix% You equipped &9%hatname% &rhat!'
+  Unequip: '%prefix% You unequipped &9%hatname% &rhat!'
   Astronaut:
     Name: '&9Astronaut'
   Scared:
@@ -380,27 +380,27 @@ Hats:
   Must-Remove-Hat: '%prefix% You must remove your helmet to equip a hat!'
 Suits:
   Rave:
-    helmet-name: '&b&lR&a&la&e&lv&6&le &f&lHelmet'
-    chestplate-name: '&b&lR&a&la&e&lv&6&le &f&lChestplate'
-    leggings-name: '&b&lR&a&la&e&lv&6&le &f&lLeggings'
-    boots-name: '&b&lR&a&la&e&lv&6&le &f&lBoots'
+    helmet-name: '&9Rave Helm'
+    chestplate-name: '&9Rave Jacket'
+    leggings-name: '&9Rave Pants'
+    boots-name: '&9Rave Boots'
   Astronaut:
-    helmet-name: '&f&lAstronaut &f&lHelmet'
-    chestplate-name: '&f&lAstronaut &f&lChestplate'
-    leggings-name: '&f&lAstronaut &f&lLeggings'
-    boots-name: '&f&lAstronaut &f&lBoots'
+    helmet-name: '&9Spacesuit Helmet'
+    chestplate-name: '&9Spacesuit'
+    leggings-name: '&9Spacesuit'
+    boots-name: '&9Spacesuit Boots'
   Diamond:
-    helmet-name: '&b&lDiamond &f&lHelmet'
-    chestplate-name: '&b&lDiamond &f&lChestplate'
-    leggings-name: '&b&lDiamond &f&lLeggings'
-    boots-name: '&b&lDiamond &f&lBoots'
+    helmet-name: '&9Diamond Helmet'
+    chestplate-name: '&9Diamond Chestplate'
+    leggings-name: '&bDiamond Leggings'
+    boots-name: '&9Diamond Boots'
   Santa:
-    helmet-name: '&4&lSanta &f&lHelmet'
-    chestplate-name: '&4&lSanta &f&lChestplate'
-    leggings-name: '&4&lSanta &f&lLeggings'
-    boots-name: '&4&lSanta &f&lBoots'
-  Equip: '%prefix% &9You equipped %suitname%!'
-  Unequip: '%prefix% &9You unequipped %suitname%!'
+    helmet-name: '&9Santa''s Hat'
+    chestplate-name: '&9Santa''s Jacket'
+    leggings-name: '&9Santa''s Pants'
+    boots-name: '&9Santa''s Slippers'
+  Equip: '%prefix% You equipped %suitname%!'
+  Unequip: '%prefix% You unequipped %suitname%!'
   Suit-Part-Lore: '&9Suits Part'
 Menu:
   Gadgets: '&7Gadgets'

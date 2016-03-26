@@ -554,6 +554,7 @@ public class UltraCosmetics extends JavaPlugin{
         fileStorage = true;
         placeHolderColor = true;
         ammoEnabled = true;
+        petRenameMoney = true;
         cooldownInBar = true;
         //BubbleNetwork end
 
@@ -571,8 +572,8 @@ public class UltraCosmetics extends JavaPlugin{
             e.printStackTrace();
         }
 
-        checkTreasureChests();
 
+        checkTreasureChests();
         //BubbleNetwork start
         /*
         new Thread() {
@@ -643,7 +644,7 @@ public class UltraCosmetics extends JavaPlugin{
             log("");
         }
         */
-        vaultLoaded = false;
+        vaultLoaded = true;
         Core.vaultLoaded = vaultLoaded;
         Core.placeHolderColor = placeHolderColor;
         Core.commandManager = commandManager;

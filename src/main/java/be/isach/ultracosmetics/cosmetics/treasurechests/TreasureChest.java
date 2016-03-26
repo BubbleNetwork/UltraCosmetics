@@ -2,10 +2,7 @@ package be.isach.ultracosmetics.cosmetics.treasurechests;
 
 import be.isach.ultracosmetics.Core;
 import be.isach.ultracosmetics.config.MessageManager;
-import be.isach.ultracosmetics.util.BlockUtils;
-import be.isach.ultracosmetics.util.MathUtils;
-import be.isach.ultracosmetics.util.Particles;
-import be.isach.ultracosmetics.util.UtilParticles;
+import be.isach.ultracosmetics.util.*;
 import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.EntityItem;
 import net.minecraft.server.v1_8_R3.TileEntityChest;
@@ -19,6 +16,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -60,17 +58,35 @@ public class TreasureChest
     boolean cooldown = false;
     private TreasureChestDesign design;
 
-    public TreasureChest(UUID owner, final TreasureChestDesign design) {
+    public TreasureChest(UUID owner, final TreasureChestDesign design,final Location center) {
         if (owner == null) return;
+
+        Cuboid cuboid = new Cuboid(center).expand(Cuboid.CuboidDirection.Horizontal, 2).expand(Cuboid.CuboidDirection.Up, 1);
+        Iterator<Block> next = cuboid.iterator();
+        Block b;
+        Location l;
+        while(next.hasNext()){
+            b = next.next();
+            if(b.getType() != Material.AIR) {
+                l = b.getLocation();
+                blocksToRestore.add(b);
+                oldMaterials.put(l, b.getType());
+                oldDatas.put(l, b.getData());
+                b.setTypeIdAndData(Material.AIR.getId(), (byte)0, false);
+            }
+        }
 
         this.instance = this;
         this.design = design;
         this.particleEffect = design.getEffect();
         this.owner = owner;
+        this.center = center;
 
         Core.registerListener(this);
 
         this.player = getPlayer();
+
+        player.teleport(center);
 
         if (Core.getCustomPlayer(getPlayer()).currentMorph != null)
             Core.getCustomPlayer(getPlayer()).setSeeSelfMorph(false);
@@ -157,7 +173,6 @@ public class TreasureChest
                     Block lampBlock;
                     if (this.i == 5) {
                         lampBlock = getPlayer().getLocation().add(0.0D, -1.0D, 0.0D).getBlock();
-                        center = lampBlock.getLocation().add(0.5D, 1.0D, 0.5D);
                         oldMaterials.put(lampBlock.getLocation(), lampBlock.getType());
                         oldDatas.put(lampBlock.getLocation(), Byte.valueOf(lampBlock.getData()));
                         blocksToRestore.add(lampBlock);

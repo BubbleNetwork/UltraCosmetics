@@ -5,8 +5,8 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.treasurechests.TreasureChest;
 import be.isach.ultracosmetics.cosmetics.treasurechests.TreasureChestDesign;
-import be.isach.ultracosmetics.util.Cuboid;
-import com.thebubblenetwork.api.framework.BukkitBubblePlayer;
+import com.thebubblenetwork.api.framework.player.BukkitBubblePlayer;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -26,10 +26,10 @@ public class TreasureChestManager implements Listener {
 
     private static Random random = new Random();
 
-    private static void openTreasureChest(Player player) {
+    private static void openTreasureChest(Player player, Location center) {
         String designPath = getRandomDesign();
         player.closeInventory();
-        new TreasureChest(player.getUniqueId(), new TreasureChestDesign(designPath));
+        new TreasureChest(player.getUniqueId(), new TreasureChestDesign(designPath), center);
     }
 
     private static String getRandomDesign() {
@@ -39,13 +39,15 @@ public class TreasureChestManager implements Listener {
         return list.get(random.nextInt(set.size()));
     }
 
-    public static void tryOpenChest(Player player) {
+    public static void tryOpenChest(Player player, Location center) {
         if (Core.getCustomPlayer(player).getKeys() > 0) {
-            Cuboid c = new Cuboid(player.getLocation().add(-2, 0, -2), player.getLocation().add(2, 1, 2));
+            /*
+            Cuboid c = new Cuboid(center.clone().add(-2, 0, -2), center.clone().add(2, 1, 2));
             if (!c.isEmpty()) {
                 player.sendMessage(MessageManager.getMessage("Chest-Not-Enough-Space"));
                 return;
             }
+            */
             for (Entity ent : player.getNearbyEntities(5, 5, 5)) {
                 if (ent instanceof Player && Core.getCustomPlayer((Player) ent).currentTreasureChest != null) {
                     player.closeInventory();
@@ -58,11 +60,15 @@ public class TreasureChestManager implements Listener {
                 return;
             }
             Core.getCustomPlayer(player).removeKey();
-            openTreasureChest(player);
+            openTreasureChest(player, center);
         } else {
             player.closeInventory();
             Core.getCustomPlayer(player).openKeyPurchaseMenu();
         }
+    }
+
+    public static void tryOpenChest(Player p){
+        tryOpenChest(p, p.getLocation());
     }
 
     @EventHandler

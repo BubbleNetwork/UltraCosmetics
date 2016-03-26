@@ -207,9 +207,9 @@ Ammo-System-For-Gadgets:
 # 
 # List for type: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 Menu-Item:
-  Give-On-Join: true
-  Give-On-Respawn: true
-  Slot: 7
+  Give-On-Join: false
+  Give-On-Respawn: false
+  Slot: 21
   Type: BLAZE_POWDER
   Data: 0
   Displayname: '&bCosmetics'
@@ -242,14 +242,14 @@ Gadget-Slot: 4
 # players will be able to remove
 # their current gadget by pressing
 # their drop key.
-Remove-Gadget-With-Drop: false
+Remove-Gadget-With-Drop: true
 # List of the worlds
 # where cosmetics are enabled!
 Enabled-Worlds:
 - Lobby
 Gadgets:
   BatBlaster:
-    Cooldown: 8.0
+    Cooldown: 4.0
     # Description of this gadget.
     Description:
     - '&7&oLaunch waves of annoying bats'
@@ -264,7 +264,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   Chickenator:
-    Cooldown: 6.0
+    Cooldown: 3.0
     # Description of this gadget.
     Description:
     - '&7&oShoot, boom, KFC.'
@@ -278,7 +278,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   ColorBomb:
-    Cooldown: 25.0
+    Cooldown: 12.0
     # Description of this gadget.
     Description:
     - '&7&oA colorful bomb!'
@@ -292,7 +292,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   DiscoBall:
-    Cooldown: 45.0
+    Cooldown: 22.0
     # Description of this gadget.
     Description:
     - '&7&oJust, dance!'
@@ -306,7 +306,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   EtherealPearl:
-    Cooldown: 2.0
+    Cooldown: 1.0
     # Description of this gadget.
     Description:
     - '&7&oTake a ride through the skies'
@@ -321,7 +321,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   FleshHook:
-    Cooldown: 5.0
+    Cooldown: 2.0
     # Description of this gadget.
     Description:
     - '&7&oMake new friends by throwing a hook'
@@ -337,7 +337,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   MelonThrower:
-    Cooldown: 2.0
+    Cooldown: 1.0
     # Description of this gadget.
     Description:
     - '&7&oDeliciously fun!'
@@ -351,7 +351,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   BlizzardBlaster:
-    Cooldown: 12.0
+    Cooldown: 6.0
     # Description of this gadget.
     Description:
     - '&7&oLet it go!'
@@ -365,7 +365,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   PortalGun:
-    Cooldown: 2.0
+    Cooldown: 1.0
     # Description of this gadget.
     Description:
     - '&7&oMomentum, a function of mass and velocity,'
@@ -381,7 +381,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   ExplosiveSheep:
-    Cooldown: 25.0
+    Cooldown: 12.0
     # Description of this gadget.
     Description:
     - '&7&oAre you sure it''s supposed'
@@ -396,7 +396,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   PaintballGun:
-    Cooldown: 0.5
+    Cooldown: 0.25
     # Description of this gadget.
     Description:
     - '&7&oPEW PEW PEW PEW!!!'
@@ -423,7 +423,7 @@ Gadgets:
     BlackList:
     - REDSTONE_BLOCK
   ThorHammer:
-    Cooldown: 8.0
+    Cooldown: 4.0
     # Description of this gadget.
     Description:
     - "&7&oGet the real Mj\xf6lnir"
@@ -437,7 +437,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   AntiGravity:
-    Cooldown: 30.0
+    Cooldown: 15.0
     # Description of this gadget.
     Description:
     - '&7&oYou don''t like gravity?'
@@ -452,7 +452,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   SmashDown:
-    Cooldown: 15.0
+    Cooldown: 12.0
     # Description of this gadget.
     Description:
     - '&7&oAND HIS NAME IS... JOHN CENA!!'
@@ -466,7 +466,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   Rocket:
-    Cooldown: 60.0
+    Cooldown: 30.0
     # Description of this gadget.
     Description:
     - '&7&oHouston, we have got a problem..'
@@ -480,7 +480,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   BlackHole:
-    Cooldown: 35.0
+    Cooldown: 17.0
     # Description of this gadget.
     Description:
     - '&7&oYou should not get caught by it..'
@@ -494,7 +494,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   Tsunami:
-    Cooldown: 12.0
+    Cooldown: 6.0
     # Description of this gadget.
     Description:
     - '&9&oTSUNAMI!!'
@@ -510,7 +510,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   TNT:
-    Cooldown: 10.0
+    Cooldown: 5.0
     # Description of this gadget.
     Description:
     - '&7&oBlow some people up!'
@@ -525,7 +525,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   FunGun:
-    Cooldown: 4.0
+    Cooldown: 2.0
     # Description of this gadget.
     Description:
     - '&7&oWoow! So much fun in a gun!'
@@ -539,7 +539,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   Parachute:
-    Cooldown: 60.0
+    Cooldown: 30.0
     # Description of this gadget.
     Description:
     - '&7&oGERONIMOooo!'
@@ -553,7 +553,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   QuakeGun:
-    Cooldown: 3.0
+    Cooldown: 1.0
     # Description of this gadget.
     Description:
     - '&7&oGet a real Rail Gun'
@@ -568,7 +568,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   GhostParty:
-    Cooldown: 45.0
+    Cooldown: 22.0
     # Description of this gadget.
     Description:
     - '&7&oWho Ya Gonna Call?'
@@ -598,7 +598,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   ChristmasTree:
-    Cooldown: 20.0
+    Cooldown: 10.0
     # Description of this gadget.
     Description:
     - '&7&oHere is a Christmas'
@@ -613,7 +613,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   FreezeCannon:
-    Cooldown: 8.0
+    Cooldown: 4.0
     # Description of this gadget.
     Description:
     - '&7&oTransform the floor into a rink!'
@@ -642,7 +642,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   PartyPopper:
-    Cooldown: 2.0
+    Cooldown: 1.0
     # Description of this gadget.
     Description:
     - '&7&oCelebrate by blasting confetti into'
@@ -657,7 +657,7 @@ Gadgets:
     # it in treasure chests
     Can-Be-Found-In-Treasure-Chests: true
   Trampoline:
-    Cooldown: 75.0
+    Cooldown: 35.0
     # Description of this gadget.
     Description:
     - '&7&oConstructs a trampoline!'
@@ -1175,7 +1175,7 @@ Hats:
   Astronaut:
     # description of this hat.
     Description:
-    - '&7&oHouston, we have got a problem.'
+    - '&7Houston we have a problem.'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1186,7 +1186,7 @@ Hats:
   Scared:
     # description of this hat.
     Description:
-    - '&7&oOh gawd, that scared me!'
+    - '&7Oh gawd that scares me!'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1197,7 +1197,7 @@ Hats:
   Angel:
     # description of this hat.
     Description:
-    - '&7&oDid it hurt when you fell from heaven?'
+    - '&7Did it hurt when you fell from heaven?'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1208,7 +1208,7 @@ Hats:
   Embarassed:
     # description of this hat.
     Description:
-    - '&7&oI am kinda embarassed by that.'
+    - '&7I am kinda embarassed'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1219,7 +1219,7 @@ Hats:
   Kissy:
     # description of this hat.
     Description:
-    - '&7&oWanna kiss?'
+    - '&7Wanna smooch?'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1230,7 +1230,7 @@ Hats:
   Sad:
     # description of this hat.
     Description:
-    - '&7&oI am so sad.'
+    - '&7I''m sad'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1241,7 +1241,7 @@ Hats:
   Cool:
     # description of this hat.
     Description:
-    - '&7&oI am such a cool guy.'
+    - '&7Hangin with the cool kids'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1252,7 +1252,7 @@ Hats:
   Surprised:
     # description of this hat.
     Description:
-    - '&7&oWow, did not expect that!'
+    - '&7Wooow'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1263,7 +1263,7 @@ Hats:
   Dead:
     # description of this hat.
     Description:
-    - '&7&ogot rekt'
+    - '&7You died'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1274,7 +1274,7 @@ Hats:
   Crying:
     # description of this hat.
     Description:
-    - '&7&oi cri evrytiem'
+    - '&7;('
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1285,7 +1285,7 @@ Hats:
   BigSmile:
     # description of this hat.
     Description:
-    - '&7&oUh, because I am really happy!'
+    - '&7Because I am really happy!'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1296,7 +1296,7 @@ Hats:
   Wink:
     # description of this hat.
     Description:
-    - '&7&oYou know what I mean ;)'
+    - '&7You know what I mean ;)'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1307,7 +1307,7 @@ Hats:
   Derp:
     # description of this hat.
     Description:
-    - '&7&oDerp Derp Derping all around'
+    - '&7Derp Derp Derping all around'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1318,7 +1318,7 @@ Hats:
   Smile:
     # description of this hat.
     Description:
-    - '&7&oUh, because I am happy'
+    - '&7Happy happy happy'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1329,7 +1329,7 @@ Hats:
   Iron:
     # description of this hat.
     Description:
-    - '&7&oAs hard as iron!'
+    - '&7Rock solid shiny'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1340,7 +1340,7 @@ Hats:
   Gold:
     # description of this hat.
     Description:
-    - '&7&oMy precious!'
+    - '&7My precious'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1351,7 +1351,7 @@ Hats:
   Diamond:
     # description of this hat.
     Description:
-    - '&7&oThis is really strong!'
+    - '&7This is really shiny!'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1362,7 +1362,7 @@ Hats:
   Piston:
     # description of this hat.
     Description:
-    - '&7&oHave you got the redstone?'
+    - '&7Have you got the redstone?'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1373,7 +1373,7 @@ Hats:
   CommandBlock:
     # description of this hat.
     Description:
-    - '&7&oControl the world with it!'
+    - '&7Control the network...'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1384,7 +1384,7 @@ Hats:
   Music:
     # description of this hat.
     Description:
-    - '&7&oYou are so musical.'
+    - '&7The best music'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1395,7 +1395,7 @@ Hats:
   Squid:
     # description of this hat.
     Description:
-    - '&7&oBloop Bloop!'
+    - '&7An inky creature'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1406,7 +1406,7 @@ Hats:
   Chicken:
     # description of this hat.
     Description:
-    - '&7&oBwwaaaaaaaaaaaakkkkk!'
+    - '&7A lively chick'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1417,7 +1417,7 @@ Hats:
   Pig:
     # description of this hat.
     Description:
-    - '&7&oOink Oink!'
+    - '&7A cute piggy'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1428,7 +1428,7 @@ Hats:
   Blaze:
     # description of this hat.
     Description:
-    - '&7&oWatch out for the fire!'
+    - '&7Watch out for the fire!'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1439,7 +1439,7 @@ Hats:
   Sheep:
     # description of this hat.
     Description:
-    - '&7&oBaaaa, baa'
+    - '&7Baa baa'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1450,7 +1450,7 @@ Hats:
   Golem:
     # description of this hat.
     Description:
-    - '&7&oI am your guard.'
+    - '&7A loyal guard'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1461,7 +1461,7 @@ Hats:
   Enderman:
     # description of this hat.
     Description:
-    - '&7&oNow I am here, now I am there.'
+    - '&7A creepy slenderman'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1472,7 +1472,7 @@ Hats:
   Mario:
     # description of this hat.
     Description:
-    - '&7&oIt is me! Mario!'
+    - '&7It is me! Mario!'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1483,7 +1483,7 @@ Hats:
   Luigi:
     # description of this hat.
     Description:
-    - '&7&oLuigi time!'
+    - '&7Luigi time!'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1494,7 +1494,7 @@ Hats:
   Batman:
     # description of this hat.
     Description:
-    - '&7&oI am batman!'
+    - '&7I am the Batman'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1505,7 +1505,7 @@ Hats:
   Chest:
     # description of this hat.
     Description:
-    - '&7&oOpen, and close'
+    - '&7A chest'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1516,7 +1516,7 @@ Hats:
   Skull:
     # description of this hat.
     Description:
-    - '&7&oWho iss headless now?'
+    - '&7Spooky skeleton head'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1527,7 +1527,7 @@ Hats:
   Ghost:
     # description of this hat.
     Description:
-    - '&7&o2spooky4u'
+    - '&7Spooky spooky'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1538,7 +1538,7 @@ Hats:
   JackOLantern:
     # description of this hat.
     Description:
-    - '&7&oA little pumkin'
+    - '&7A cool pumpkin'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1549,7 +1549,7 @@ Hats:
   ScaryClown:
     # description of this hat.
     Description:
-    - '&7&oHope you are not scared of clowns.'
+    - '&7I''m not too scary'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1560,18 +1560,18 @@ Hats:
   Santa:
     # description of this hat.
     Description:
-    - '&7&oOh oh oh! Merry Christmas!'
+    - '&7Merry christmas!'
     # if true, the hat will be enabled.
-    Enabled: true
+    Enabled: false
     # if true, the description of this hat will be showed.
     Show-Description: true
     # if true, it'll be possible to find
     # it in treasure chests
-    Can-Be-Found-In-Treasure-Chests: true
+    Can-Be-Found-In-Treasure-Chests: false
   Snowman:
     # description of this hat.
     Description:
-    - '&7&oI don''t have a skull.. or bones'
+    - '&7A cute snowman'
     # if true, the hat will be enabled.
     Enabled: true
     # if true, the description of this hat will be showed.
@@ -1582,25 +1582,25 @@ Hats:
   Present:
     # description of this hat.
     Description:
-    - '&7&oFrom Santa, to you!'
+    - '&7A special present'
     # if true, the hat will be enabled.
-    Enabled: true
+    Enabled: false
     # if true, the description of this hat will be showed.
     Show-Description: true
     # if true, it'll be possible to find
     # it in treasure chests
-    Can-Be-Found-In-Treasure-Chests: true
+    Can-Be-Found-In-Treasure-Chests: false
   Elf:
     # description of this hat.
     Description:
-    - '&7&oI work for Santa!'
+    - '&7An elf which works for Santa'
     # if true, the hat will be enabled.
-    Enabled: true
+    Enabled: false
     # if true, the description of this hat will be showed.
     Show-Description: true
     # if true, it'll be possible to find
     # it in treasure chests
-    Can-Be-Found-In-Treasure-Chests: true
+    Can-Be-Found-In-Treasure-Chests: false
 Suits:
   Rave:
     # if true, the suit will be enabled.
@@ -1628,9 +1628,9 @@ Suits:
     Can-Be-Found-In-Treasure-Chests: true
   Santa:
     # if true, the suit will be enabled.
-    Enabled: true
+    Enabled: false
     # if true, the description of this suit will be showed.
     Show-Description: true
     # if true, it'll be possible to find
     # it in treasure chests
-    Can-Be-Found-In-Treasure-Chests: true
+    Can-Be-Found-In-Treasure-Chests: false

@@ -316,6 +316,10 @@ public class Cuboid implements Iterable<Block>, Cloneable,
             case Up:
                 return new Cuboid(this.worldName, this.x1, this.y1,
                         this.z1, this.x2, this.y2 + amount, this.z2);
+            case Horizontal:
+                return expand(CuboidDirection.North, amount).expand(CuboidDirection.South, amount).expand(CuboidDirection.East, amount).expand(CuboidDirection.West, amount);
+            case Vertical:
+                return expand(CuboidDirection.Up, amount).expand(CuboidDirection.Down, amount);
             default:
                 throw new IllegalArgumentException("Invalid direction "
                         + dir);

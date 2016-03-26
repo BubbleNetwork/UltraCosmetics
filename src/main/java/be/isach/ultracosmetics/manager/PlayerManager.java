@@ -44,7 +44,7 @@ public class PlayerManager {
 
     public boolean hasNeverCome(UUID uuid) {
         //BubbleNetwork start
-        return !playerCache.containsKey(uuid);
+        return false;
         /*
         if (Core.usingFileStorage())
             return !SettingsManager.hasData(uuid);
