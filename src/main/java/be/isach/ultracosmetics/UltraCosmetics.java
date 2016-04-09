@@ -24,7 +24,6 @@ import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.run.InvalidWorldManager;
 import be.isach.ultracosmetics.util.*;
 import com.thebubblenetwork.api.framework.BubbleNetwork;
-import com.thebubblenetwork.api.framework.plugin.AddonDescriptionFile;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.World;

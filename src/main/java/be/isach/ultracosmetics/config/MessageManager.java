@@ -33,7 +33,7 @@ public class MessageManager {
         addMessage("Ammo", "&7Your ammo: &e%ammo%");
         addMessage("Purchase", "&a&lPURCHASE");
         addMessage("Cancel", "&c&lCANCEL");
-        addMessage("Buy-Ammo-Description", "&e&lBuy %amount% %gadgetname% ammo &e&lfor %price%$");
+        addMessage("Buy-Ammo-Description", "&e&lBuy %amount% %gadgetname% ammo &e&lfor %price%T");
         addMessage("Right-Click-Buy-Ammo", "&7Right Click to Buy Ammo");
         addMessage("Not-Enough-Money", "%prefix% &c&lYou don't have enough money!");
         addMessage("Successful-Purchase", "%prefix% &a&lSuccessful purchase!");
@@ -44,7 +44,7 @@ public class MessageManager {
         addMessage("Click-Open-Chest", "§aClick to open a chest");
         addMessage("Click-Buy-Key", "§aClick to buy a key");
         addMessage("Your-Keys", "§7§oYour keys: §f§l%keys%");
-        addMessage("Buy-Treasure-Key-ItemName", "&e&l1 &7&lTreasure Key &e&lfor %price%$");
+        addMessage("Buy-Treasure-Key-ItemName", "&e&l1 &7&lTreasure Key &e&lfor %price%T");
         addMessage("Found-Legendary", "%prefix% &c&l%name% found Legendary %found%");
         addMessage("Chest-Not-Enough-Space", "%prefix% &c&lThere isn't enough space for a treasure chest!");
         addMessage("Too-Close-To-Other-Chest", "%prefix% &c&lYou are too close to another treasure chest!");
@@ -57,7 +57,7 @@ public class MessageManager {
         addMessage("Clear-Morph", "§c§lClear current morph");
         addMessage("Clear-Hat", "§c§lClear current hat");
         addMessage("Clear-Suit", "§c§lClear current suit");
-        addMessage("Rename-Pet-Purchase", "§c§lRename the pet to &f&l%name% &c&lfor &e&l%price%$");
+        addMessage("Rename-Pet-Purchase", "§c§lRename the pet to &f&l%name% &c&lfor &e&l%price%T");
 
         addMessage("Active-Pet-Needed", "§c§lYou need to spawn a pet to rename it");
         addMessage("Rename-Pet", "§c§lClick to rename: %petname%");
@@ -68,7 +68,7 @@ public class MessageManager {
         addMessage("Treasure-Chests-Loot.Effect", "%effect% effect");
         addMessage("Treasure-Chests-Loot.Morph", "%morph% morph");
         addMessage("Treasure-Chests-Loot.Hat", "%hat% hat");
-        addMessage("Treasure-Chests-Loot.Money", "&e&l%money%$");
+        addMessage("Treasure-Chests-Loot.Money", "&e&l%money%T");
         addMessage("Treasure-Chests-Loot.gadget", "%gadget% gadget");
         addMessage("Treasure-Chests-Loot.Suit", "%suit%");
         addMessage("Treasure-Chests-Loot.Nothing", "&c&lNothing");

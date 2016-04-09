@@ -12,7 +12,7 @@ Invalid-Menu: '%prefix% Invalid Menu!'
 Ammo: '&bYour ammo: &7%ammo%'
 Purchase: '&aBuy'
 Cancel: '&4Cancel'
-Buy-Ammo-Description: '&bBuy &7%amount% %gadgetname% &bammo &e&lfor %price%$'
+Buy-Ammo-Description: '&bBuy &7%amount% %gadgetname% &bammo &e&lfor %price%T'
 Right-Click-Buy-Ammo: '&7Right Click to Buy Ammo'
 Not-Enough-Money: '%prefix% You don''t have enough money!'
 Successful-Purchase: '%prefix% Successful purchase!'
@@ -23,7 +23,7 @@ Dont-Have-Key: "&7You need a key!"
 Click-Open-Chest: "&7Click to open a chest"
 Click-Buy-Key: "&7Click to buy a key"
 Your-Keys: "&7Your keys: &9%keys%"
-Buy-Treasure-Key-ItemName: '&e&l1 &7&lTreasure Key &e&lfor %price%$'
+Buy-Treasure-Key-ItemName: '&e&l1 &7&lTreasure Key &e&lfor %price%T'
 Found-Legendary: '%prefix% &9%name% &7found Legendary &9%found%'
 Chest-Not-Enough-Space: '%prefix% There isn''t enough space for a treasure chest!'
 Too-Close-To-Other-Chest: '%prefix% You are too close to another treasure chest!'
@@ -36,7 +36,7 @@ Clear-Effect: "&b&lClear current effect"
 Clear-Morph: "&b&lClear current morph"
 Clear-Hat: "&b&lClear current hat"
 Clear-Suit: "&b&lClear current suit"
-Rename-Pet-Purchase: "&7Rename the pet to &9%name% &7for &9%price%$"
+Rename-Pet-Purchase: "&7Rename the pet to &9%name% &7for &9%price%T"
 Active-Pet-Needed: "&7You need to spawn a pet to rename it"
 Rename-Pet: "&7Click to rename: &9%petname%"
 Treasure-Chests-Loot:
@@ -46,7 +46,7 @@ Treasure-Chests-Loot:
   Effect: '%effect% effect'
   Morph: '%morph% morph'
   Hat: '%hat% hat'
-  Money: '&e&l%money%$'
+  Money: '&e&l%money%T'
   gadget: '%gadget% gadget'
   Suit: '%suit%'
   Nothing: '&7Nothing'

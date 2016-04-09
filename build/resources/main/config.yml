@@ -77,7 +77,7 @@ TreasureChests:
       Chance: 10
       Message:
         enabled: false
-        message: '%prefix% &6&l%name% found %money%$'
+        message: '%prefix% &6&l%name% found %money%T'
     Gadgets-Ammo:
       Enabled: true
       Min: 20
