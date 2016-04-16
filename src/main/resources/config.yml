@@ -96,7 +96,7 @@ TreasureChests:
       Chance: 10
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found %money%T &7in a bubble crate!'
+        message: '%prefix% 9b%name%&r found %money%T &7in a bubble crate!'
     Gadgets-Ammo:
       Enabled: false
       Min: 20
@@ -104,31 +104,31 @@ TreasureChests:
       Chance: 60
       Message:
         enabled: false
-        message: '%prefix% &9&l%name%&r found %ammo% %gadget% ammo &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found %ammo% %gadget% ammo &7in a bubble crate!'
     Gadgets:
       Enabled: true
       Chance: 30
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found gadget %gadget% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found gadget %gadget% &7in a bubble crate!'
     Mounts:
       Enabled: true
       Chance: 2
       Message:
         enabled: true
-        message: '%%prefix% &b%name%&9 found rare %mount% &7in a bubble crate!'
+        message: '%%prefix% &9%name%&r found rare %mount% &7in a bubble crate!'
     Pets:
       Enabled: true
       Chance: 2
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found rare %pet% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found rare %pet% &7in a bubble crate!'
     Morphs:
       Enabled: false
       Chance: 4
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found legendary %morph% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found legendary %morph% &7in a bubble crate!'
     Effects:
       Enabled: true
       Chance: 10
