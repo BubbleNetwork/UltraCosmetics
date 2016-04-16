@@ -41,6 +41,11 @@ public class CustomPlayer {
     public static boolean hasPermission(CommandSender sender, String permission){
         if(sender instanceof Player){
             BukkitBubblePlayer player = BukkitBubblePlayer.getObject(((Player) sender).getUniqueId());
+            if(player != null && permission.startsWith("ultracosmetics.")){
+                if(player.getHubItemUsable(permission.replace("ultracosmetics.",""))){
+                    return true;
+                }
+            }
             return player != null && player.isAuthorized(permission);
         }
         return true;
@@ -418,7 +423,7 @@ public class CustomPlayer {
             Bukkit.getScheduler().runTaskLater(Core.getPlugin(), new Runnable() {
                 @Override
                 public void run() {
-                    getPlayer().openInventory(inventory);
+                    getPlayer().closeInventory();
                 }
             }, 3);
         } catch (Exception exc) {
