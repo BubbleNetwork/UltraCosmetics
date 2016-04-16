@@ -116,11 +116,10 @@ public class TreasureChestManager implements Listener {
                     /*
                     Core.economy.withdrawPlayer((Player) event.getWhoClicked(), (int) SettingsManager.getConfig().get("TreasureChests.Key-Price"));
                     */
-                    //BubbleNetwork end
                     Core.getCustomPlayer((Player) event.getWhoClicked()).addKey();
                     event.getWhoClicked().sendMessage(MessageManager.getMessage("Successful-Purchase"));
                     event.getWhoClicked().closeInventory();
-                    MainMenuManager.openMenu((Player) event.getWhoClicked());
+                    //BubbleNetwork end
                 } else {
                     event.getWhoClicked().sendMessage(MessageManager.getMessage("Not-Enough-Money"));
                     event.getWhoClicked().closeInventory();

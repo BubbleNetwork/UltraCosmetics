@@ -420,12 +420,7 @@ public class CustomPlayer {
 
             ItemFactory.fillInventory(inventory);
 
-            Bukkit.getScheduler().runTaskLater(Core.getPlugin(), new Runnable() {
-                @Override
-                public void run() {
-                    getPlayer().closeInventory();
-                }
-            }, 3);
+            getPlayer().openInventory(inventory);
         } catch (Exception exc) {
             exc.printStackTrace();
         }
