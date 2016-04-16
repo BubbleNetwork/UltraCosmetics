@@ -110,43 +110,43 @@ TreasureChests:
       Chance: 30
       Message:
         enabled: true
-        message: 'prefix% &b%name%&9 found gadget %gadget% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found gadget %gadget% &7in a bubble crate!'
     Mounts:
       Enabled: true
       Chance: 2
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found rare %mount% &7in a bubble crate!'
+        message: '%%prefix% &b%name%&9 found rare %mount% &7in a bubble crate!'
     Pets:
       Enabled: true
       Chance: 2
       Message:
         enabled: true
-        message: 'prefix% &b%name%&9 found rare %pet% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found rare %pet% &7in a bubble crate!'
     Morphs:
       Enabled: false
       Chance: 4
       Message:
         enabled: true
-        message: 'prefix% &b%name%&9 found legendary %morph% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found legendary %morph% &7in a bubble crate!'
     Effects:
       Enabled: true
       Chance: 10
       Message:
         enabled: true
-        message: 'prefix% &b%name%&9 found legendary %effect% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found legendary %effect% &7in a bubble crate!'
     Hats:
       Enabled: true
       Chance: 20
       Message:
         enabled: true
-        message: 'prefix% &b%name%&9 found %hat% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found %hat% &7in a bubble crate!'
     Suits:
       Enabled: true
       Chance: 20
       Message:
         enabled: true
-        message: 'prefix% &b%name%&9 found rare %suit% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found rare %suit% &7in a bubble crate!'
   Designs:
     Classic:
       center-block: '169:0'
