@@ -96,7 +96,7 @@ TreasureChests:
       Chance: 10
       Message:
         enabled: true
-        message: '%prefix% 9b%name%&r found %money%T &7in a bubble crate!'
+        message: '%prefix% 9b%name%&r found &b%money%T &7in a bubble crate!'
     Gadgets-Ammo:
       Enabled: false
       Min: 20
@@ -104,49 +104,49 @@ TreasureChests:
       Chance: 60
       Message:
         enabled: false
-        message: '%prefix% &9%name%&r found %ammo% %gadget% ammo &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found %ammo% &b%gadget% ammo &7in a bubble crate!'
     Gadgets:
       Enabled: true
       Chance: 30
       Message:
         enabled: true
-        message: '%prefix% &9%name%&r found gadget %gadget% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found gadget &b%gadget% &7in a bubble crate!'
     Mounts:
       Enabled: true
       Chance: 2
       Message:
         enabled: true
-        message: '%%prefix% &9%name%&r found rare %mount% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found rare &b%mount% &7in a bubble crate!'
     Pets:
       Enabled: true
       Chance: 2
       Message:
         enabled: true
-        message: '%prefix% &9%name%&r found rare %pet% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found rare &b%pet% &7in a bubble crate!'
     Morphs:
       Enabled: false
       Chance: 4
       Message:
         enabled: true
-        message: '%prefix% &9%name%&r found legendary %morph% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found legendary &b%morph% &7in a bubble crate!'
     Effects:
       Enabled: true
       Chance: 10
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found legendary %effect% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found legendary &b%effect% &7in a bubble crate!'
     Hats:
       Enabled: true
       Chance: 20
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found %hat% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found &b%hat% &7in a bubble crate!'
     Suits:
       Enabled: true
       Chance: 20
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found rare %suit% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found rare &b%suit% &7in a bubble crate!'
   Designs:
     Classic:
       center-block: '169:0'
@@ -218,17 +218,19 @@ Menu-Item:
 # List for "Type" https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 No-Permission:
   Show-In-Lore: true
-  Lore-Message-Yes: '&7You have permission for this!'
-  Lore-Message-No: '&cYou need to donate for this &7store.thebubblenetwork.com'
+  Lore-Message-Yes: '&aYou have permission for this!'
+  Lore-Message-No: '&4You do not have access to this'
   Dont-Show-Item: false
   Custom-Item:
-    enabled: false
-    Type: INK_SACK
-    Data: 8
+    enabled: true
+    Type: BARRIER
+    Data: 0
     Name: '&7{cosmetic-name}'
     Lore:
     - ''
-    - '&c&lYou do not have permission for this!'
+    - '&4You do not have acces to this!'
+    - '&cYou can donate for this immeadiately at &7thebubblenetwork.com'
+    - '&cYou can win this in a &9BubbleCrate'
     - ''
 # If set to true, in messages the cosmetics' names
 # won't be colored.
