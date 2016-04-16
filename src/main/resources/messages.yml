@@ -23,11 +23,11 @@ Dont-Have-Key: "&7You need a key!"
 Click-Open-Chest: "&7Click to open a chest"
 Click-Buy-Key: "&7Click to buy a key"
 Your-Keys: "&7Your keys: &9%keys%"
-Buy-Treasure-Key-ItemName: '&e&l1 &7&lTreasure Key &e&lfor %price%T'
-Found-Legendary: '%prefix% &9%name% &7found Legendary &9%found%'
+Buy-Treasure-Key-ItemName: '&6BubbleCrate &c%price%T'
+Found-Legendary: '%prefix% &9%name%&r found Legendary &b%found%&7 in a bubble crate!'
 Chest-Not-Enough-Space: '%prefix% There isn''t enough space for a treasure chest!'
 Too-Close-To-Other-Chest: '%prefix% You are too close to another treasure chest!'
-You-Won-Treasure-Chests: '%prefix% You won: %name%!'
+You-Won-Treasure-Chests: '%prefix% &rYou won: &9%name%!'
 Clear-Cosmetics: "&b&lClear cosmetics"
 Clear-Gadget: "&b&lClear current gadget"
 Clear-Pet: "&b&lClear current pet"
@@ -322,7 +322,7 @@ Hats:
   BigSmile:
     Name: '&9BigSmile'
   Wink:
-    Name: '&e&lWink'
+    Name: '&9Wink'
   Derp:
     Name: '&9Derp'
   Smile:
