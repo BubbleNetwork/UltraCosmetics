@@ -107,19 +107,19 @@ TreasureChests:
         message: '%prefix% &9%name%&r found %ammo% &b%gadget% ammo &7in a bubble crate!'
     Gadgets:
       Enabled: true
-      Chance: 30
+      Chance: 4
       Message:
         enabled: true
         message: '%prefix% &9%name%&r found gadget &b%gadget% &7in a bubble crate!'
     Mounts:
       Enabled: true
-      Chance: 2
+      Chance: 4
       Message:
         enabled: true
         message: '%prefix% &9%name%&r found rare &b%mount% &7in a bubble crate!'
     Pets:
       Enabled: true
-      Chance: 2
+      Chance: 4
       Message:
         enabled: true
         message: '%prefix% &9%name%&r found rare &b%pet% &7in a bubble crate!'
@@ -134,19 +134,19 @@ TreasureChests:
       Chance: 10
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found legendary &b%effect% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found legendary &b%effect% &7in a bubble crate!'
     Hats:
       Enabled: true
       Chance: 20
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found &b%hat% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found &b%hat% Hat &7in a bubble crate!'
     Suits:
       Enabled: true
       Chance: 20
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found rare &b%suit% &7in a bubble crate!'
+        message: '%prefix% &b%name%&9 found &b%suit% &7in a bubble crate!'
   Designs:
     Classic:
       center-block: '169:0'
@@ -791,23 +791,23 @@ Mounts:
     Description:
     - '&7&oWat.'
     # if true, the mount will be enabled.
-    Enabled: true
+    Enabled: false
     # if true, the description will be showed.
     Show-Description: true
     # if true, it'll be possible to find
     # it in treasure chests
-    Can-Be-Found-In-Treasure-Chests: true
+    Can-Be-Found-In-Treasure-Chests: false
   Slime:
     # Description of this mount.
     Description:
     - '&7&oSplat! Splat!'
     # if true, the mount will be enabled.
-    Enabled: true
+    Enabled: false
     # if true, the description will be showed.
     Show-Description: true
     # if true, it'll be possible to find
     # it in treasure chests
-    Can-Be-Found-In-Treasure-Chests: true
+    Can-Be-Found-In-Treasure-Chests: false
   HypeCart:
     # Description of this mount.
     Description:
@@ -825,12 +825,12 @@ Mounts:
     Description:
     - '&7&oYOU are the spider jockey!'
     # if true, the mount will be enabled.
-    Enabled: true
+    Enabled: false
     # if true, the description will be showed.
     Show-Description: true
     # if true, it'll be possible to find
     # it in treasure chests
-    Can-Be-Found-In-Treasure-Chests: true
+    Can-Be-Found-In-Treasure-Chests: false
   Rudolph:
     # Description of this mount.
     Description:
