@@ -87,8 +87,8 @@ Categories:
 # Default one is Pex's.
 # 
 TreasureChests:
-  Enabled: false
-  Key-Price: 1000
+  Enabled: trye
+  Key-Price: 2000
   Loots:
     Money:
       Enabled: true
@@ -96,7 +96,7 @@ TreasureChests:
       Chance: 10
       Message:
         enabled: true
-        message: '%prefix% 9b%name%&r found &b%money%T &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found &b%money%T &7in a bubble crate!'
     Gadgets-Ammo:
       Enabled: false
       Min: 20
@@ -140,13 +140,13 @@ TreasureChests:
       Chance: 20
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found &b%hat% Hat &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found &b%hat% Hat &7in a bubble crate!'
     Suits:
       Enabled: true
       Chance: 20
       Message:
         enabled: true
-        message: '%prefix% &b%name%&9 found &b%suit% &7in a bubble crate!'
+        message: '%prefix% &9%name%&r found &b%suit% &7in a bubble crate!'
   Designs:
     Classic:
       center-block: '169:0'
@@ -177,7 +177,7 @@ Pets-Rename:
   Permission-Required: false
   Requires-Money:
     Enabled: true
-    Price: 1000
+    Price: 4000
 # Do pets drop items? (not pickable up by players)
 Pets-Drop-Items: true
 # Are pets babies?

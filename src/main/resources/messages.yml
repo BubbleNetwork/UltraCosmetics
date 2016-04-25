@@ -12,7 +12,7 @@ Invalid-Menu: '%prefix% Invalid Menu!'
 Ammo: '&bYour ammo: &7%ammo%'
 Purchase: '&aBuy'
 Cancel: '&4Cancel'
-Buy-Ammo-Description: '&bBuy &7%amount% %gadgetname% &bammo &e&lfor %price%T'
+Buy-Ammo-Description: '&rBuy &b%amount% &9%gadgetname% Ammo &rfor &9%price%T'
 Right-Click-Buy-Ammo: '&7Right Click to Buy Ammo'
 Not-Enough-Money: '%prefix% You don''t have enough money!'
 Successful-Purchase: '%prefix% Successful purchase!'
@@ -28,14 +28,14 @@ Found-Legendary: '%prefix% &9%name%&r found Legendary &b%found%&7 in a bubble cr
 Chest-Not-Enough-Space: '%prefix% There isn''t enough space for a treasure chest!'
 Too-Close-To-Other-Chest: '%prefix% You are too close to another treasure chest!'
 You-Won-Treasure-Chests: '%prefix% &rYou won: &9%name%!'
-Clear-Cosmetics: "&b&lClear cosmetics"
-Clear-Gadget: "&b&lClear current gadget"
-Clear-Pet: "&b&lClear current pet"
-Clear-Mount: "&b&lClear current mount"
-Clear-Effect: "&b&lClear current effect"
-Clear-Morph: "&b&lClear current morph"
-Clear-Hat: "&b&lClear current hat"
-Clear-Suit: "&b&lClear current suit"
+Clear-Cosmetics: "&bClear cosmetics"
+Clear-Gadget: "&bClear current gadget"
+Clear-Pet: "&bClear current pet"
+Clear-Mount: "&bClear current mount"
+Clear-Effect: "&bClear current effect"
+Clear-Morph: "&bClear current morph"
+Clear-Hat: "&bClear current hat"
+Clear-Suit: "&bClear current suit"
 Rename-Pet-Purchase: "&7Rename the pet to &9%name% &7for &9%price%T"
 Active-Pet-Needed: "&7You need to spawn a pet to rename it"
 Rename-Pet: "&7Click to rename: &9%petname%"
@@ -60,7 +60,7 @@ Menus:
   Particle-Effects: '&7Particles'
   Suits: '&7Suits'
   Buy-Ammo: '&aBuy Ammo'
-  Rename-Pet: '&eBubbleRename Pet'
+  Rename-Pet: '&eRename Pet'
 Disable-Gadgets: '&cDisable Gadgets'
 Enable-Gadgets: '&bEnable Gadgets'
 Disable-Third-Person-View: '&cDisable Morphs Third Person View'
@@ -233,31 +233,31 @@ Pets:
     entity-displayname: '&9%playername%''s &rpiggy'
   Sheep:
     menu-name: '&9Sheep'
-    entity-displayname: '&l%playername%''s &rsheep'
+    entity-displayname: '&9%playername%''s &rsheep'
   EasterBunny:
     menu-name: '&9Easter Bunny'
-    entity-displayname: '&l%playername%''s &reaster bunny'
+    entity-displayname: '&9%playername%''s &reaster bunny'
   Cow:
     menu-name: '&9Cow'
-    entity-displayname: '&l%playername%''s &rcow'
+    entity-displayname: '&9%playername%''s &rcow'
   Kitty:
     menu-name: '&9Kitty'
-    entity-displayname: '&l%playername%''s &rkitty'
+    entity-displayname: '&9%playername%''s &rkitty'
   Dog:
     menu-name: '&9Dog'
-    entity-displayname: '&l%playername%''s &rdog'
+    entity-displayname: '&9%playername%''s &rdog'
   Chick:
     menu-name: '&9Chick'
-    entity-displayname: '&l%playername%''s &rchick'
+    entity-displayname: '&9%playername%''s &rchick'
   Wither:
     menu-name: '&9Wither'
-    entity-displayname: '&l%playername%''s &rwither'
+    entity-displayname: '&9%playername%''s &rwither'
   Pumpling:
     menu-name: '&9Pumpling'
-    entity-displayname: '&l%playername%''s &rpumpling'
+    entity-displayname: '&9%playername%''s &rpumpling'
   ChristmasElf:
     menu-name: '&9Christmas Elf'
-    entity-displayname: '&l%playername%''s &rChristmas elf'
+    entity-displayname: '&9%playername%''s &rChristmas elf'
   Spawn: '%prefix% You spawned %petname%'
   Despawn: '%prefix% You despawned %petname%'
   #Got up to
